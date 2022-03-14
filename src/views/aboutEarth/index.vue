@@ -218,6 +218,130 @@ export default {
 @import './theme/css/main.css';
 .earthIndex {
     background: #1c1d26;
+    body,
+    input,
+    select,
+    textarea {
+        color: rgba(255, 255, 255, 0.75);
+        font-family: 'Roboto', Helvetica, sans-serif;
+        font-size: 15pt;
+        font-weight: 100;
+        line-height: 1.75em;
+    }
+    strong,
+    b {
+        color: #ffffff;
+        font-weight: 300;
+    }
+
+    em,
+    i {
+        font-style: italic;
+    }
+
+    p {
+        margin: 0 0 2em 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #ffffff;
+        font-weight: 300;
+        line-height: 1em;
+        margin: 0 0 1em 0;
+    }
+
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+        color: inherit;
+        border: 0;
+    }
+
+    h2 {
+        font-size: 2em;
+        line-height: 1.5em;
+        letter-spacing: -0.025em;
+    }
+
+    h3 {
+        font-size: 1.35em;
+        line-height: 1.5em;
+    }
+
+    h4 {
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+
+    h5 {
+        font-size: 0.9em;
+        line-height: 1.5em;
+    }
+
+    h6 {
+        font-size: 0.7em;
+        line-height: 1.5em;
+    }
+
+    sub {
+        font-size: 0.8em;
+        position: relative;
+        top: 0.5em;
+    }
+
+    sup {
+        font-size: 0.8em;
+        position: relative;
+        top: -0.5em;
+    }
+
+    hr {
+        border: 0;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.3);
+        margin: 3em 0;
+    }
+
+    hr.major {
+        margin: 4em 0;
+    }
+
+    blockquote {
+        border-left: solid 4px rgba(255, 255, 255, 0.3);
+        font-style: italic;
+        margin: 0 0 2em 0;
+        padding: 0.5em 0 0.5em 2em;
+    }
+
+    code {
+        background: rgba(255, 255, 255, 0.075);
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        margin: 0 0.25em;
+        padding: 0.25em 0.65em;
+    }
+
+    pre {
+        -webkit-overflow-scrolling: touch;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        margin: 0 0 2em 0;
+    }
+
+    pre code {
+        display: block;
+        line-height: 1.75em;
+        padding: 1em 1.5em;
+        overflow-x: auto;
+    }
     a {
         -moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
         -webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
