@@ -407,23 +407,23 @@ export default {
             screenHeight: document.body.clientHeight, // 屏幕尺寸
         };
     },
-    mounted() {},
+    mounted() {
+        window.addEventListener('scroll', this.headerChangeBg);
+        // 获取屏幕高度
+        const that = this;
+        window.onresize = () => {
+            return (() => {
+                window.screenHeight = document.body.clientHeight;
+                that.screenHeight = window.screenHeight;
+            })();
+        };
+        this.screenHeight = this.screenHeight * 0.87;
+        console.log('windowsHeight', this.screenHeight);
+    },
     watch: {
         '$route.path': function (newVal, oldVal) {
             if (newVal !== '/') {
                 this.isOnBgStyle = true;
-            } else {
-                window.addEventListener('scroll', this.headerChangeBg);
-                // 获取屏幕高度
-                const that = this;
-                window.onresize = () => {
-                    return (() => {
-                        window.screenHeight = document.body.clientHeight;
-                        that.screenHeight = window.screenHeight;
-                    })();
-                };
-                this.screenHeight = this.screenHeight * 0.87;
-                console.log('windowsHeight', this.screenHeight);
             }
         },
     },
