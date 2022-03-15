@@ -1,7 +1,7 @@
 <template>
     <div class="headerIndex">
         <div class="headerWrap">
-            <div id="menu">
+            <div id="menu" :class="{ backgroundChange: isOnBgStyle }">
                 <ul class="menu-top">
                     <li>
                         <router-link to="/" class="menu-button">
@@ -402,9 +402,42 @@ export default {
     data() {
         return {
             fullscreenLoading: false,
+            scrollLenght: '',
+            isOnBgStyle: false,
+            screenHeight: document.body.clientHeight, // 屏幕尺寸
         };
     },
+    mounted() {},
+    watch: {
+        '$route.path': function (newVal, oldVal) {
+            if (newVal !== '/') {
+                this.isOnBgStyle = true;
+            } else {
+                window.addEventListener('scroll', this.headerChangeBg);
+                // 获取屏幕高度
+                const that = this;
+                window.onresize = () => {
+                    return (() => {
+                        window.screenHeight = document.body.clientHeight;
+                        that.screenHeight = window.screenHeight;
+                    })();
+                };
+                this.screenHeight = this.screenHeight * 0.87;
+                console.log('windowsHeight', this.screenHeight);
+            }
+        },
+    },
     methods: {
+        // 动态控制header背景
+        headerChangeBg() {
+            this.scrollLenght = document.documentElement.scrollTop || document.body.scrollTop;
+            if (this.scrollLenght > this.screenHeight) {
+                this.isOnBgStyle = true;
+            } else {
+                this.isOnBgStyle = false;
+            }
+            console.log(this.scroll);
+        },
         goLogin() {
             this.$router.push({ path: '/login', query: 'magiss' });
         },
@@ -442,6 +475,12 @@ export default {
         position: fixed;
         top: 0;
         z-index: 100;
+
+        .backgroundChange {
+            transition: all 0.5s ease;
+            background: #404040;
+        }
+
         #menu {
             position: relative;
             .btnRight {

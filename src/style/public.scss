@@ -40,3 +40,8 @@ body::-webkit-scrollbar {
         border-radius: 0;
     }
 }
+
+// 修改element-ui 样式
+.el-link.is-underline:hover:after {
+    border: 0 !important;
+}

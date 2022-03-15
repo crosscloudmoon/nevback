@@ -18,6 +18,7 @@ const routes = [
             title: '我是首页',
             isShowHeader: true,
             isShowFooter: true,
+            isShowHeaderBg: true,
         },
         component: Home,
     },
