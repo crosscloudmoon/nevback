@@ -1,34 +1,34 @@
-name: Build and Deploy
-on:
-    push:
-        branches:
-            - main
-jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout 🛎️
-              # uses: actions/checkout@v2.3.4
-              uses: actions/checkout@releases/v2
-              with:
-                  persist-credentials: false
-            #       path: ~/.npm
-            #       key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            #       restore-keys: |
-            #           ${{ runner.os }}-node-
-            # - name: Use Node.js
-            #   uses: actions/setup-node@v1
-            #   with:
-            #       node-version: 14
-            - name: Install and Build
-              run: |
-                  npm install
-                  npm run build
-            - name: Deploy 🚀
-              # uses: JamesIves/github-pages-deploy-action@4.1.5
-              uses: JamesIves/github-pages-deploy-action@releases/v2
-              with:
-                  token: ${{ secrets.DEPLOY }}
-                  folder: dist
-                  branch: main
-                  repository-name: crosscloudmoon/crosscloudmoon.github.io
+# name: Build and Deploy
+# on:
+#     push:
+#         branches:
+#             - main
+# jobs:
+#     build-and-deploy:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout 🛎️
+#               # uses: actions/checkout@v2.3.4
+#               uses: actions/checkout@releases/v2
+#               with:
+#                   persist-credentials: false
+#             #       path: ~/.npm
+#             #       key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#             #       restore-keys: |
+#             #           ${{ runner.os }}-node-
+#             # - name: Use Node.js
+#             #   uses: actions/setup-node@v1
+#             #   with:
+#             #       node-version: 14
+#             - name: Install and Build
+#               run: |
+#                   npm install
+#                   npm run build
+#             - name: Deploy 🚀
+#               # uses: JamesIves/github-pages-deploy-action@4.1.5
+#               uses: JamesIves/github-pages-deploy-action@releases/v2
+#               with:
+#                   token: ${{ secrets.DEPLOY }}
+#                   folder: dist
+#                   branch: main
+#                   repository-name: crosscloudmoon/crosscloudmoon.github.io
