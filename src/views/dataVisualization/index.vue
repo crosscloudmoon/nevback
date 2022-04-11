@@ -12,6 +12,38 @@
                 <div id="testEcharts"></div>
                 <div id="testEcharts2"></div>
                 <div id="testEcharts3"></div>
+                <div class="test">
+                    <!-- 男女比例 -->
+                    <iframe
+                        src="https://ourworldindata.org/grapher/share-population-female?tab=chart"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe>
+                    <!-- 幸福和生活满意度 -->
+                    <!-- <iframe
+                        src="https://ourworldindata.org/grapher/happiness-cantril-ladder?time=latest&region=Asia"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe> -->
+                    <!-- 人口最稠密 -->
+                    <!-- <iframe
+                        src="https://ourworldindata.org/grapher/population-density"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe> -->
+                    <!-- 自然灾害 -->
+                    <!-- <iframe
+                        src="https://ourworldindata.org/explorers/natural-disasters?facet=none&Disaster+Type=All+disasters&Impact=Deaths&Timespan=Decadal+average&Per+capita=false&country=~OWID_WRL&hideControls=true"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe> -->
+                    <!-- 人的身高 -->
+                    <!-- <iframe
+                        src="https://ourworldindata.org/grapher/average-height-of-men-for-selected-countries"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe> -->
+                </div>
             </div>
         </div>
     </div>
@@ -500,6 +532,10 @@ export default {
             #testEcharts3 {
                 width: 600px;
                 height: 600px;
+            }
+            .test {
+                width: 500px;
+                height: 400px;
             }
         }
     }

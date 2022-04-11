@@ -1,7 +1,11 @@
 <template>
     <div class="headerIndex">
         <div class="headerWrap">
-            <div id="menu" :class="{ backgroundChange: isOnBgStyle }">
+            <div
+                id="menu"
+                :class="{ backgroundChange: isOnBgStyle }"
+                :style="{ transition: $route.path === '/' ? 'all 0.5s ease' : 'null' }"
+            >
                 <ul class="menu-top">
                     <li>
                         <router-link to="/" class="menu-button">
@@ -376,7 +380,7 @@
                         v-loading.fullscreen.lock="fullscreenLoading"
                         class="loginBtn hvr-fade"
                     >
-                        登录
+                        <span class="loginTitle">登录</span>
                     </el-button>
                     <!-- <el-button @click="loadingOpen" v-loading.fullscreen.lock="fullscreenLoading">
                         test
@@ -408,6 +412,7 @@ export default {
         };
     },
     mounted() {
+        console.log('path', this.$route);
         window.addEventListener('scroll', this.headerChangeBg);
         // 获取屏幕高度
         const that = this;
@@ -418,25 +423,37 @@ export default {
             })();
         };
         this.screenHeight = this.screenHeight * 0.87;
-        console.log('windowsHeight', this.screenHeight);
+        if (this.$route.path === '/') {
+            // console.log('windowsHeight', this.screenHeight);
+        } else {
+            this.isOnBgStyle = true;
+            // this.$('.menu').css('transition', 'null');
+        }
     },
     watch: {
-        '$route.path': function (newVal, oldVal) {
-            if (newVal !== '/') {
+        $route: function (newVal, oldVal) {
+            console.log('newval', newVal);
+            if (newVal.path !== '/') {
                 this.isOnBgStyle = true;
+            } else if (newVal.path === '/') {
+                this.isOnBgStyle = false;
             }
         },
     },
     methods: {
         // 动态控制header背景
         headerChangeBg() {
-            this.scrollLenght = document.documentElement.scrollTop || document.body.scrollTop;
-            if (this.scrollLenght > this.screenHeight) {
-                this.isOnBgStyle = true;
+            if (this.$route.path === '/') {
+                this.scrollLenght = document.documentElement.scrollTop || document.body.scrollTop;
+                if (this.scrollLenght > this.screenHeight) {
+                    this.isOnBgStyle = true;
+                } else {
+                    this.isOnBgStyle = false;
+                }
+                // console.log(this.scroll);
             } else {
-                this.isOnBgStyle = false;
+                this.isOnBgStyle = true;
             }
-            console.log(this.scroll);
         },
         goLogin() {
             this.$router.push({ path: '/login', query: 'magiss' });
@@ -478,6 +495,7 @@ export default {
 
         .backgroundChange {
             transition: all 0.5s ease;
+            // transition: null;
             background: #404040;
         }
 
@@ -486,13 +504,23 @@ export default {
             .btnRight {
                 position: absolute;
                 right: 60px;
+                top: 5px;
                 .loginBtn {
                     // width: 60px;
+                    font-size: 16px;
+                    background-color: transparent;
+                    color: #aaa;
+                    border: 0;
+                    transition: all 0.3s;
+                    &:hover {
+                        transform: scale(1.2);
+                        color: #fff;
+                    }
                 }
                 .hvr-fade:hover,
                 .hvr-fade:focus,
                 .hvr-fade:active {
-                    background-color: #aaa;
+                    // background-color: #aaa;
                 }
             }
         }
