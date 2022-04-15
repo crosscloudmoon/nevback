@@ -5,7 +5,7 @@ import Login from '../views/login';
 import Satellite from '../views/satellite';
 import DataVisualization from '../views/dataVisualization';
 import AboutEarth from '../views/aboutEarth';
-import AboutEarthReal from '../views/aboutEarth/about.vue';
+import MapData from '../views/mapData';
 import test from '../views/test';
 
 Vue.use(VueRouter);
@@ -63,14 +63,14 @@ const routes = [
         component: AboutEarth,
     },
     {
-        path: '/aboutEarthReal',
-        name: 'AboutEarth',
+        path: '/mapData',
+        name: 'MapData',
         meta: {
-            title: '了解我们的地球',
-            isShowHeader: false,
-            isShowFooter: false,
+            title: '地图类数据',
+            isShowHeader: true,
+            isShowFooter: true,
         },
-        component: AboutEarthReal,
+        component: MapData,
     },
     {
         path: '/test',
@@ -82,15 +82,6 @@ const routes = [
         },
         component: test,
     },
-
-    // {
-    //     path: '/about',
-    //     name: 'About',
-    //     // route level code-splitting
-    //     // this generates a separate chunk (about.[hash].js) for this route
-    //     // which is lazy-loaded when the route is visited.
-    //     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    // },
 ];
 
 const router = new VueRouter({

@@ -1,6 +1,5 @@
 <template>
     <div class="loadingIndex">
-        45645645
         <div class="test">
             <div class="white-widget grey-bg author-area">
                 <div class="auth-info row">

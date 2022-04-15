@@ -3457,13 +3457,14 @@ body.landing #header {
 }
 
 #banner .content header h2 {
-    font-size: 2.5em;
+    font-size: 4.5em;
     margin: 0;
 }
 
 #banner .content header p {
     margin: 0.5em 0 0 0;
     top: 0;
+    font-size: 2em;
 }
 
 #banner .content .image {

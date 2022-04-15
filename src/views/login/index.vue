@@ -88,6 +88,7 @@ export default {
         // 登录
         loginT(param) {
             if (param.account === 'admin' && param.password === '123') {
+                this.$store.state.userCard = true;
                 this.$router.push({ path: '/' });
             } else {
                 this.$message({ message: '帐号或密码错误', type: 'error' });

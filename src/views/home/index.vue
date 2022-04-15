@@ -260,7 +260,7 @@
                 <el-link href="#nextContent" class="goNext">
                     <i class="el-icon-arrow-down"></i>
                 </el-link>
-                <div class="animated bounce infinite">点我</div>
+                <div class="animated bounce infinite">Click Me</div>
                 <div class="about-area pt-100 pb-70" id="nextContent">
                     <div class="container-fluid">
                         <div class="row">
@@ -339,13 +339,14 @@
                                             利用数字技术和方法将，构成一个全球的数字模型，在高速网络上进行快速流通，直观完整地了解我们所在的这颗星球
                                         </h2>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut tur incidunt
-                                            ut labore et dolore magnam aliquam quaerat voluptatem.
+                                            Using digital technology and methods, we will form a
+                                            global digital model, conduct rapid circulation on the
+                                            high-speed network, and intuitively and completely
+                                            understand our planet.
                                         </p>
                                     </div>
                                     <div class="consultation-btn">
-                                        <a href="#" class="learn-btn">
+                                        <a href="https://cesium.com/" class="learn-btn">
                                             Learn more
                                             <i class="flaticon-right-arrow-1"></i>
                                         </a>
@@ -354,9 +355,13 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="consultation-play-btn">
-                                    <router-link to="/satellite" class="video-btn popup-btn">
+                                    <a
+                                        href="http://www.zgeo.work/CesiumTx/examples/index.html#baseDemo"
+                                        target="_blank"
+                                        class="video-btn popup-btn"
+                                    >
                                         <i class="bx bx-play"></i>
-                                    </router-link>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -367,17 +372,14 @@
                     <div class="container">
                         <div class="section-title text-center">
                             <span class="sp-before">Offering</span>
-                            <h2>What Can We Offer</h2>
+                            <h2>What Can We Do</h2>
                         </div>
                         <div class="row pt-45">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="offer-card">
-                                    <h3>Visualize your ideas</h3>
-                                    <p>
-                                        Lorem ipsum dolo sit amet, consectetur adipisicing elit sed
-                                        do eiusmod tempor incididun teiusmod tempor
-                                    </p>
-                                    <i class="flaticon-vision offer-icon"></i>
+                                    <h3>介绍了解数字地球</h3>
+                                    <p>有关数字地球的定义，说明数字地球🌍技术的意义。</p>
+                                    <i class="flaticon-3d-graphics offer-icon"></i>
                                     <a href="#" class="learn-btn">
                                         Learn more
                                         <i class="flaticon-right-arrow-1"></i>
@@ -386,12 +388,9 @@
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="offer-card">
-                                    <h3>Render 3D Works</h3>
-                                    <p>
-                                        Lorem ipsum dolo sit amet, consectetur adipisicing elit sed
-                                        do eiusmod tempor incididun teiusmod tempor
-                                    </p>
-                                    <i class="flaticon-3d-graphics offer-icon"></i>
+                                    <h3>科普我们的星球</h3>
+                                    <p>每天生存的星球，可你对它认识多少？</p>
+                                    <i class="flaticon-vision offer-icon"></i>
                                     <a href="#" class="learn-btn">
                                         Learn more
                                         <i class="flaticon-right-arrow-1"></i>
@@ -400,11 +399,8 @@
                             </div>
                             <div class="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
                                 <div class="offer-card">
-                                    <h3>Gain a Perspective</h3>
-                                    <p>
-                                        Lorem ipsum dolo sit amet, consectetur adipisicing elit sed
-                                        do eiusmod tempor incididun teiusmod tempor
-                                    </p>
+                                    <h3>数字地球数据的可视化</h3>
+                                    <p>我将以可视化图表形式为大家简单清晰展示数据</p>
                                     <i class="flaticon-cube offer-icon"></i>
                                     <a href="#" class="learn-btn">
                                         Learn more
@@ -419,19 +415,17 @@
                 <div class="process-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center">
-                            <span class="sp-before">Our Work Process</span>
-                            <h2>How Does Sprio Works</h2>
+                            <span class="sp-before">To Link Us</l></span>
+                            <h2>探索我们的模块</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut tur incidunt ut labore et dolore magnam
-                                aliquam quaerat voluptatem.
+                               以下为本站核心及网站内容。去往不同的模块，进行不同的探索。
                             </p>
                         </div>
                         <div class="row pt-45">
                             <div class="col-lg-4 col-sm-6 col-md-4">
                                 <div class="process-card">
-                                    <i class="flaticon-ideas"></i>
-                                    <h3>Conceptual</h3>
+                                    <i @click="goEarth" class="flaticon-ideas"></i>
+                                    <h3>了解我们的星球</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
                                         eiusmod tempor
@@ -440,8 +434,8 @@
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-4">
                                 <div class="process-card">
-                                    <i class="flaticon-sketch"></i>
-                                    <h3>Schematic</h3>
+                                    <i @click="goDataVisual(0)" class="flaticon-sketch"></i>
+                                    <h3>数据可视化</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
                                         eiusmod tempor
@@ -452,8 +446,8 @@
                                 class="col-lg-4 col-sm-6 col-md-4 offset-lg-0 offset-md-0 offset-sm-3"
                             >
                                 <div class="process-card">
-                                    <i class="flaticon-deep-learning"></i>
-                                    <h3>Development</h3>
+                                    <i @click="goSatellite" class="flaticon-deep-learning"></i>
+                                    <h3>卫星观测</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
                                         eiusmod tempor
@@ -468,7 +462,7 @@
                     <div class="container border-bottom pb-70">
                         <div class="section-title text-center">
                             <span class="sp-before">What We Do</span>
-                            <h2>Our Best Services</h2>
+                            <h2>数据可视化模块</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                 eiusmod tempor incididunt ut tur incidunt ut labore et dolore magnam
@@ -478,19 +472,18 @@
                         <div class="row pt-45">
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a  @click="goDataVisual(0)" href="#">
                                         <img
-                                            src="./theme/picture/services-img1.jpeg"
+                                            src="../aboutEarth/theme/images/earth1.jpeg"
                                             alt="Images"
                                         />
                                     </a>
                                     <div class="content">
                                         <h3>
-                                            <a href="service-details.html">Architecture studio</a>
+                                            <a  @click="goDataVisual(0)" href="#">世界人口</a>
                                         </h3>
                                         <p>
-                                            Lorem ipsum dolo sit amet, consectetur adipisicing
-                                            eiusmod tempor incididun teiusmod tempor
+                                            各地区人口密集程度
                                         </p>
                                         <a href="#" class="learn-btn">
                                             Learn more
@@ -501,19 +494,18 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a  @click="goDataVisual(1)" href="#">
                                         <img
-                                            src="./theme/picture/services-img2.jpeg"
+                                            src="./theme/picture/GDP.png"
                                             alt="Images"
                                         />
                                     </a>
                                     <div class="content">
                                         <h3>
-                                            <a href="service-details.html">Engineering works</a>
+                                            <a @click="goDataVisual(1)" href="#">世界经济</a>
                                         </h3>
                                         <p>
-                                            Lorem ipsum dolo sit amet, consectetur adipisicing
-                                            eiusmod tempor incididun teiusmod tempor
+                                            观察世界各国经济变化
                                         </p>
                                         <a href="#" class="learn-btn">
                                             Learn more
@@ -524,17 +516,16 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a  @click="goDataVisual(2)" href="#">
                                         <img
-                                            src="./theme/picture/services-img3.jpeg"
+                                            src="./theme/picture/sex.png"
                                             alt="Images"
                                         />
                                     </a>
                                     <div class="content">
-                                        <h3><a href="service-details.html">Interrior design</a></h3>
+                                        <h3><a @click="goDataVisual(2)" href="#">男女比例</a></h3>
                                         <p>
-                                            Lorem ipsum dolo sit amet, consectetur adipisicing
-                                            eiusmod tempor incididun teiusmod tempor
+                                            了解女性比例问题
                                         </p>
                                         <a href="#" class="learn-btn">
                                             Learn more
@@ -545,14 +536,14 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a href="#">
                                         <img
                                             src="./theme/picture/services-img4.jpeg"
                                             alt="Images"
                                         />
                                     </a>
                                     <div class="content">
-                                        <h3><a href="service-details.html">Decoration & art</a></h3>
+                                        <h3><a href="#">Decoration & art</a></h3>
                                         <p>
                                             Lorem ipsum dolo sit amet, consectetur adipisicing
                                             eiusmod tempor incididun teiusmod tempor
@@ -566,14 +557,14 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a href="#">
                                         <img
                                             src="./theme/picture/services-img5.jpeg"
                                             alt="Images"
                                         />
                                     </a>
                                     <div class="content">
-                                        <h3><a href="service-details.html">GIS & planning</a></h3>
+                                        <h3><a href="#">GIS & planning</a></h3>
                                         <p>
                                             Lorem ipsum dolo sit amet, consectetur adipisicing
                                             eiusmod tempor incididun teiusmod tempor
@@ -587,7 +578,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a href="service-details.html">
+                                    <a href="#">
                                         <img
                                             src="./theme/picture/services-img6.jpeg"
                                             alt="Images"
@@ -595,7 +586,7 @@
                                     </a>
                                     <div class="content">
                                         <h3>
-                                            <a href="service-details.html">3D work decoration</a>
+                                            <a href="#">3D work decoration</a>
                                         </h3>
                                         <p>
                                             Lorem ipsum dolo sit amet, consectetur adipisicing
@@ -867,8 +858,8 @@
                 <div class="team-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center">
-                            <span class="sp-before">Creative Team</span>
-                            <h2>Our Motivated Team</h2>
+                            <span class="sp-before">Map data</span>
+                            <h2>地图数据展示</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                 eiusmod tempor incididunt ut tur incidunt ut labore et dolore magnam
@@ -999,8 +990,8 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-8">
                                 <div class="section-title">
-                                    <span class="sp-before">Recent Articles</span>
-                                    <h2>Our Latest Blog</h2>
+                                    <span class="sp-before">About us</span>
+                                    <h2>了解我们</h2>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-4">
@@ -1096,6 +1087,15 @@ export default {
             console.log('src', this.$refs.tabsBg.src);
             this.$refs.tabsBg.src = './theme/picture/portfolio-img2.jpg';
             this.tabImg = tabImg2;
+        },
+        goEarth() {
+            this.$router.push({ path: '/aboutEarth', });
+        },
+        goDataVisual(type) {
+            this.$router.push({ path: '/dataVisualization', query: { type: type }, });
+        },
+        goSatellite() {
+            window.open('http://www.baidu.com');
         },
     },
 };

@@ -3,13 +3,14 @@
         <div v-show="isShowMain" class="earthContent">
             <!-- Banner -->
             <section id="banner">
+              <el-link class="el-icon-back goHome" @click="goHome">返回</el-link>
                 <div class="content">
                     <header>
-                        <h2>The future has landed</h2>
+                        <h2>我们是地球的居民</h2>
                         <p>
-                            And there are no hoverboards or flying cars.
+                            但你真的了解地球吗？
                             <br />
-                            Just apps. Lots of mother flipping apps.
+                            下面你将知道地球的种种！
                         </p>
                     </header>
                     <span class="image"><img src="images/pic01.jpg" alt="" /></span>
@@ -19,28 +20,29 @@
 
             <!-- One -->
             <section id="one" class="spotlight style1 bottom">
+              <div class="earthimg1"></div>
                 <span class="image fit main"><img src="images/pic02.jpg" alt="" /></span>
                 <div class="content">
-                    <div class="container">
-                        <div class="row">
+                    <div class="container"  style="width: 70%" >
+                        <div class="row" style="width: 100%" >
                             <div class="col-4 col-12-medium">
                                 <header>
-                                    <h2>Odio faucibus ipsum integer consequat</h2>
+                                    <h2>地球的配置</h2>
                                     <p>
                                         Nascetur eu nibh vestibulum amet gravida nascetur praesent
                                     </p>
                                 </header>
                             </div>
-                            <div class="col-4 col-12-medium">
-                                <p>
-                                    Feugiat accumsan lorem eu ac lorem amet sed accumsan donec.
-                                    Blandit orci porttitor semper. Arcu phasellus tortor enim mi
-                                    nisi praesent dolor adipiscing. Integer mi sed nascetur cep
-                                    aliquet augue varius tempus lobortis porttitor accumsan
-                                    consequat adipiscing lorem dolor.
+                            <div class="col-4 col-12-medium" style= 'font-size: 22px; margin-left: 300px;'>
+                                <p >
+                                    年龄：46亿岁。</br> 公转周期：约365天。 </br>
+                                    公转轨道：呈椭圆形。</br>
+                                    自转周期：太阳日为24小时。</br>
+                                    自转方向：自西向东。</br>
+                                    卫星（天然）：1颗（月球）
                                 </p>
                             </div>
-                            <div class="col-4 col-12-medium">
+                            <!-- <div class="col-4 col-12-medium">
                                 <p>
                                     Morbi enim nascetur et placerat lorem sed iaculis neque ante
                                     adipiscing adipiscing metus massa. Blandit orci porttitor
@@ -48,7 +50,7 @@
                                     adipiscing. Integer mi sed nascetur cep aliquet augue varius
                                     tempus. Feugiat lorem ipsum dolor nullam.
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -57,16 +59,16 @@
 
             <!-- Two -->
             <section id="two" class="spotlight style2 right">
+              <div class="earthimg2"></div>
+
                 <span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
                 <div class="content">
                     <header>
-                        <h2>Interdum amet non magna accumsan</h2>
+                        <h2>地球的面积</h2>
                         <p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
                     </header>
                     <p>
-                        Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi
-                        nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius
-                        tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.
+                        地球总面积约为5.10072亿平方千米，其中约29.2%（1.4894亿平方千米）是陆地，其余70.8%（3.61132亿平方千米）是水。
                     </p>
                     <ul class="actions">
                         <li><a href="#" class="button">Learn More</a></li>
@@ -77,16 +79,16 @@
 
             <!-- Three -->
             <section id="three" class="spotlight style3 left">
+              <div class="earthimg3"></div>
+
                 <span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
                 <div class="content">
                     <header>
-                        <h2>Interdum felis blandit praesent sed augue</h2>
+                        <h2>地球圈层</h2>
                         <p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
                     </header>
                     <p>
-                        Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi
-                        nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius
-                        tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.
+                        地球圈层分为地球外圈和地球内圈两大部分。地球外圈可进一步划分为四个基本圈层，即大气圈、水圈、生物圈和岩石圈；地球内圈可进一步划分为三个基本圈层，即地幔圈、外核液体圈和固体内核圈。
                     </p>
                     <ul class="actions">
                         <li><a href="#" class="button">Learn More</a></li>
@@ -94,72 +96,83 @@
                 </div>
                 <a href="#four" class="goto-next scrolly">Next</a>
             </section>
+            <!-- Six -->
+            <section id="six" class="spotlight style2 right">
+              <div class="earthimg4"></div>
 
+                <span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
+                <div class="content">
+                    <header>
+                        <h2>陆地与海洋</h2>
+                        <p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
+                    </header>
+                    <p>
+                        尽管地球70%的面积被海洋覆盖，但我们目前只探索了其中的5%。
+                    </p>
+                    <ul class="actions">
+                        <li><a href="#" class="button">Learn More</a></li>
+                    </ul>
+                </div>
+                <a href="#three" class="goto-next scrolly">Next</a>
+            </section>
             <!-- Four -->
             <section id="four" class="wrapper style1 special fade-up">
                 <div class="container">
                     <header class="major">
-                        <h2>Accumsan sed tempus adipiscing blandit</h2>
+                        <h2>More about earth</h2>
                         <p>
-                            Iaculis ac volutpat vis non enim gravida nisi faucibus posuere arcu
-                            consequat
+                            这里有更多关于地球的知识
                         </p>
                     </header>
                     <div class="box alt">
                         <div class="row gtr-uniform">
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-chart-area"></span>
-                                <h3>Ipsum sed commodo</h3>
+                                <h3>地球表面</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                    据估计，地球表面80%以上的地区起源于火山岩。
                                 </p>
                             </section>
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-comment"></span>
-                                <h3>Eleifend lorem ornare</h3>
+                                <h3>世界最低点</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                    马里亚纳海沟：挑战者的深渊——海平面下11034米或36201英尺。
                                 </p>
                             </section>
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-flask"></span>
-                                <h3>Cubilia cep lobortis</h3>
+                                <h3>最高温度</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                   地球上记载的最高气温为56.7摄氏度
                                 </p>
                             </section>
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-paper-plane"></span>
-                                <h3>Non semper interdum</h3>
+                                <h3>最低温度</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                    最冷的温度：华氏零下128.6度
                                 </p>
                             </section>
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-file"></span>
-                                <h3>Odio laoreet accumsan</h3>
+                                <h3>世界最高点</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                    珠穆朗玛峰 ，世界上最著名的山峰之一。距地心的距离为6381.95公里。
                                 </p>
                             </section>
                             <section class="col-4 col-6-medium col-12-xsmall">
                                 <span class="icon solid alt major fa-lock"></span>
-                                <h3>Massa arcu accumsan</h3>
+                                <h3>与月球的距离</h3>
                                 <p>
-                                    Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit
-                                    orci porttitor.
+                                     地球到月球的距离貌似很短，但是已经可以塞下太阳系的所有星球了。
                                 </p>
                             </section>
                         </div>
                     </div>
                     <footer class="major">
                         <ul class="actions special">
-                            <li><a href="#" class="button">Magna sed feugiat</a></li>
+                            <li><a href="#" class="button">回到顶部</a></li>
                         </ul>
                     </footer>
                 </div>
@@ -209,6 +222,9 @@ export default {
                 this.isShowMain = true;
                 this.isShowLoading = false;
             }, 1000);
+        },
+        goHome() {
+          this.$router.push({ path: '/' });
         },
     },
 };
@@ -365,6 +381,72 @@ export default {
     select:focus,
     textarea:focus {
         border-color: #e44c65;
+    }
+    .earthContent {
+      #banner {
+        .goHome {
+          position: fixed;
+          top: 50px;
+          left: 100px;
+          font-size: 20px;
+          z-index: 9999;
+          transition: all .7s ease;
+          &:hover {
+          transition: all .7s ease;
+            transform: scale(1.5);
+          }
+        }
+      }
+      #one {
+        position: relative;
+        .earthimg1 {
+          background-image: url('./theme/images/earth1.jpeg');
+          background-size: 100%;
+          position: absolute;
+          top: 10%;
+          width: 60%;
+          height: 50%;
+          transform: translateX(-50%);
+          left: 50%;
+        }
+      }
+      #two {
+        position: relative;
+        .earthimg2 {
+          background-image: url('./theme/images/earth2.png');
+          background-size: 100%;
+          position: absolute;
+          top: 10%;
+          width: 60%;
+          height: 80%;
+          transform: translateX(-50%);
+          left: 40%;
+        }
+      }
+      #three {
+        position: relative;
+        .earthimg3 {
+          background-image: url('./theme/images/earth3.png');
+          background-size: 100%;
+          position: absolute;
+          top: 20%;
+          width: 60%;
+          height: 50%;
+          left: 30%;
+        }
+      }
+      #six {
+        position: relative;
+        .earthimg4 {
+          background-image: url('./theme/images/earth4.jpeg');
+          background-size: 100%;
+          position: absolute;
+          top: 10%;
+          width: 40%;
+          height: 80%;
+          left: 20%;
+        }
+      }
     }
 }
 </style>

@@ -58,28 +58,34 @@
                         <div class="menu-dropdown menu-dropdown2">
                             <ul class="menu-sub">
                                 <li>
-                                    <router-link to="/dataVisualization" class="menu-subbutton">
+                                    <a @click="goDataVisual(0)" class="menu-subbutton">
                                         <span class="menu-label">世界人口可视化</span>
                                         <div class="menu-desc">直观了解各国人口改变</div>
-                                    </router-link>
+                                    </a>
                                 </li>
                                 <li>
-                                    <router-link to="/dataVisualization" class="menu-subbutton">
+                                    <a @click="goDataVisual(1)" class="menu-subbutton">
                                         <span class="menu-label">各国经济可视化</span>
                                         <div class="menu-desc">观察世界各国经济变化</div>
-                                    </router-link>
+                                    </a>
                                 </li>
                                 <li>
-                                    <router-link to="/dataVisualization" class="menu-subbutton">
+                                    <a @click="goDataVisual(2)" class="menu-subbutton">
                                         <span class="menu-label">中国男女比例可视化</span>
                                         <div class="menu-desc">了解我国男女比例问题</div>
-                                    </router-link>
+                                    </a>
                                 </li>
                                 <li>
-                                    <router-link to="/dataVisualization" class="menu-subbutton">
+                                    <a @click="goDataVisual(3)" class="menu-subbutton">
+                                        <span class="menu-label">世界人口身高可视化</span>
+                                        <div class="menu-desc">人的身高</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="goDataVisual(3)" class="menu-subbutton">
                                         <span class="menu-label">中国。。。</span>
                                         <div class="menu-desc">。。。</div>
-                                    </router-link>
+                                    </a>
                                 </li>
                                 <!-- <li>
                                     <a href="#" class="menu-subbutton">
@@ -90,7 +96,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#" class="menu-button menu-drop">
                             <span class="menu-label">Portfolio</span>
                         </a>
@@ -186,7 +192,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- <li>
                     <a href="#" class="menu-button menu-drop">
                         <span class="menu-label">Clients</span>
@@ -280,15 +286,15 @@
                 </li> -->
                     <li>
                         <a href="#" class="menu-button menu-drop">
-                            <span class="menu-label">Contact</span>
+                            <span class="menu-label">地图</span>
                         </a>
                         <div class="menu-dropdown menu-dropdown5">
                             <ul class="menu-sub">
                                 <li>
-                                    <router-link to="/aboutEarthReal" class="menu-subbutton">
-                                        <span class="menu-label">Pellente</span>
+                                    <a @click="goMapData(0)" class="menu-subbutton">
+                                        <span class="menu-label">各省GDP</span>
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
-                                    </router-link>
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#" class="menu-subbutton">
@@ -308,30 +314,6 @@
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="menu-subbutton">
-                                        <span class="menu-label">Vivamus</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-subbutton">
-                                        <span class="menu-label">Doloram</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-subbutton">
-                                        <span class="menu-label">Consect</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="menu-subbutton">
-                                        <span class="menu-label">Loremipe</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </li>
@@ -347,29 +329,8 @@
                         <div class="menu-dropdown menu-dropdown7">
                             <h1 style="font-size: 28px">快速了解</h1>
                             <p>
-                                <span class="emp">Lorem ipsum dolor</span>
-                                sit amet, optiones congue adipiscing elit, sed diam exp nonummy nibh
-                                euismod tincidunt utd.
-                            </p>
-
-                            <p></p>
-                            <p class="quote">
-                                Laoreet dolore magna aliquam erates volutpat. Ut wisi enim ad
-                                eleifend exp minim veniam, quis. u feugiat nulla.
-                            </p>
-                            <p>
-                                <span class="emp">Facilisis at vero</span>
-                                eros et accumsan et iusto nostrud exerci tation ullamcorper suscipit
-                                lobortis nisl ut aliquip ex ea.
-                            </p>
-                            <p class="quote">
-                                Commodo consequat duis autem vel eum iriure dolor in hendrerit in
-                                nulla vulputate velit esse consequat erates.
-                            </p>
-                            <p>
-                                <span class="emp">Vel illum dolore</span>
-                                e odio dignissim quie blandit praesent luptatum zzril delenis augue
-                                duis.
+                                <span class="emp">本网站存在为</span>
+                                介绍了解数字地球是什么技术，应用的范围，应用数字地球技术为本站的拓展模块（卫星观测），本站主要核心为以数字地球上的数字为基础使用可视化图表等技术的的数据可视化展示，在这有庞大信息量的当下，让用户简单清晰了解到数据的内容。
                             </p>
                         </div>
                     </li>
@@ -435,17 +396,26 @@ export default {
             console.log('newval', newVal);
             if (newVal.path !== '/') {
                 this.isOnBgStyle = true;
+                // if (!this.$store.state.userCard) {
+                //     this.$router.push({ path: '/login' });
+                // }
             } else if (newVal.path === '/') {
                 this.isOnBgStyle = false;
             }
         },
     },
     methods: {
+        goDataVisual(type) {
+            this.$router.push({ path: '/dataVisualization', query: { type: type } });
+        },
+        goMapData(type) {
+            this.$router.push({ path: '/mapData', query: { type: type } });
+        },
         // 动态控制header背景
         headerChangeBg() {
             if (this.$route.path === '/') {
                 this.scrollLenght = document.documentElement.scrollTop || document.body.scrollTop;
-                if (this.scrollLenght > this.screenHeight) {
+                if (this.scrollLenght >= this.screenHeight) {
                     this.isOnBgStyle = true;
                 } else {
                     this.isOnBgStyle = false;
