@@ -2,9 +2,9 @@
     <div class="dataVisualIndex">
         <div class="dataHeader">
             <div class="dataTitle">
-                <span>{{ titleContent[type].title }}</span>
+                <span class="title">{{ titleContent[type].title }}</span>
                 <br />
-                <span>{{ subTitle }}</span>
+                <span class="content">{{ titleContent[type].content }}</span>
             </div>
         </div>
         <div class="dataVisualMain">
@@ -88,7 +88,6 @@ export default {
                 { title: '男女比例可视化', content: '了解女性比例问题' },
                 { title: 'test', content: 'testtes' },
             ],
-            subTitle: 'testtest',
             dataContent: [
                 {
                     title: '哪些国家人口最稠密？',
@@ -589,7 +588,9 @@ export default {
 <style lang="scss" scoped>
 .dataVisualIndex {
     padding-top: 50px;
-    background-color: rgb(21, 14, 34);
+    // background-color: rgb(21, 14, 34);
+    background-image: url(../home/theme/image/visualbg.jpg);
+    background-size: 100% auto;
     padding-bottom: 50px;
 
     .dataHeader {
@@ -601,7 +602,16 @@ export default {
             width: 40%;
             height: 50%;
             margin: 0 auto;
-            font-size: 40px;
+            // background-color: #aaaaaa50;
+            .title {
+                // display: inline-block;
+                font-size: 52px;
+                font-weight: 500;
+                line-height: 80px;
+            }
+            .content {
+                font-size: 28px;
+            }
         }
     }
     .dataVisualMain {

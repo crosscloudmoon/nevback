@@ -198,6 +198,10 @@
 }
 #menu .emp {
     font-weight: 700;
+    margin-left: 2em;
+}
+#menu .aboutUsContent {
+    line-height: 1.5em;
 }
 #menu .quote {
     font-style: italic;

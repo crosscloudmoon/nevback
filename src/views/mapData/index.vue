@@ -1,5 +1,8 @@
 <template>
     <div class="mapData">
+        <div class="mapHeader">
+            <div class="title">{{ mapDataTitle }}</div>
+        </div>
         <div class="mapContent">
             <div class="echartsArea">
                 <div id="mapEcharts"></div>
@@ -14,6 +17,11 @@ export default {
     name: 'MapData',
     mounted() {
         this.echartsLoad();
+    },
+    data() {
+        return {
+            mapDataTitle: '地图数据',
+        };
     },
     methods: {
         echartsLoad() {
@@ -246,7 +254,7 @@ export default {
                 },
             ];
 
-            myChart.setOption = {
+            let option = {
                 backgroundColor: '#25499F',
                 baseOption: {
                     animationDurationUpdate: 1000,
@@ -332,9 +340,7 @@ export default {
                             type: 'map',
                             mapType: 'china',
                             top: '10%',
-                            // bottom: '25%',
-                            // left: '5%',
-                            // right: '10%',
+
                             itemStyle: {
                                 normal: {
                                     areaColor: '#323c48',
@@ -371,7 +377,7 @@ export default {
                             type: 'pie',
                             radius: ['12%', '20%'],
                             center: ['75%', '85%'],
-                            // roseType: 'area',
+
                             tooltip: {
                                 formatter: '{b} {d}%',
                             },
@@ -401,6 +407,7 @@ export default {
                 },
                 options: [],
             };
+            myChart.setOption(option);
 
             for (let i = 0; i < data.length; i++) {
                 // 计算其余省份GDP
@@ -412,11 +419,10 @@ export default {
                 restValue = data[i].data[0].value[0] * (restPercent / data[i].data[0].value[1]);
                 console.log(restPercent);
                 console.log(restValue);
-                myChart.options.push({
+                let op = myChart.setOption(option);
+                op.options.push({
                     visualMap: [
                         {
-                            // type:'continous',
-                            // type: 'continuous',
                             calculable: true,
                             dimension: 0,
                             left: 10,
@@ -504,11 +510,21 @@ export default {
 
 <style lang="scss" scoped>
 .mapData {
+    padding-top: 50px;
+    .mapHeader {
+        height: 200px;
+        color: #000;
+        font-size: 36px;
+        .title {
+            margin: 0 auto;
+        }
+    }
     .mapContent {
         .echartsArea {
             #mapEcharts {
-                width: 500px;
-                height: 400px;
+                margin: 0 auto;
+                width: 800px;
+                height: 800px;
             }
         }
     }

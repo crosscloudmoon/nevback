@@ -328,7 +328,7 @@
                         </a>
                         <div class="menu-dropdown menu-dropdown7">
                             <h1 style="font-size: 28px">快速了解</h1>
-                            <p>
+                            <p class="aboutUsContent">
                                 <span class="emp">本网站存在为</span>
                                 介绍了解数字地球是什么技术，应用的范围，应用数字地球技术为本站的拓展模块（卫星观测），本站主要核心为以数字地球上的数字为基础使用可视化图表等技术的的数据可视化展示，在这有庞大信息量的当下，让用户简单清晰了解到数据的内容。
                             </p>
