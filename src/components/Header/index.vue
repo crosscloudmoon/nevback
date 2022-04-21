@@ -446,7 +446,7 @@ export default {
             });
             setTimeout(() => {
                 loading.close();
-                window.open('http://36.112.11.166:8083/CP/satellite/#/', '_self');
+                window.open('http://36.112.11.166:8083/satellite/#/', '_self');
             }, 1000);
         },
     },
