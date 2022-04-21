@@ -335,14 +335,25 @@
                         </div>
                     </li>
                 </ul>
-                <div class="btnRight" @click="goLogin">
-                    <el-button
-                        @click="loadingOpen"
-                        v-loading.fullscreen.lock="fullscreenLoading"
-                        class="loginBtn hvr-fade"
-                    >
-                        <span class="loginTitle">登录</span>
-                    </el-button>
+                <div class="menu-right btnRight">
+                    <div @click="goHT">
+                        <el-button
+                            @click="loadingOpen"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                            class="loginBtn hvr-fade"
+                        >
+                            <span class="loginTitle">后台系统</span>
+                        </el-button>
+                    </div>
+                    <div @click="goLogin">
+                        <el-button
+                            @click="loadingOpen"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                            class="loginBtn hvr-fade"
+                        >
+                            <span class="loginTitle">登录</span>
+                        </el-button>
+                    </div>
                     <!-- <el-button @click="loadingOpen" v-loading.fullscreen.lock="fullscreenLoading">
                         test
                     </el-button> -->
@@ -428,6 +439,9 @@ export default {
         goLogin() {
             this.$router.push({ path: '/login', query: 'magiss' });
         },
+        goHT() {
+            this.$router.push({ path: '/managerSys' });
+        },
         loadingOpen() {
             this.fullscreenLoading = true;
             setTimeout(() => {
@@ -475,16 +489,19 @@ export default {
                 position: absolute;
                 right: 60px;
                 top: 5px;
+                div {
+                    display: inline-block;
+                }
                 .loginBtn {
                     // width: 60px;
                     font-size: 16px;
                     background-color: transparent;
-                    color: #aaa;
+                    color: #fff;
                     border: 0;
                     transition: all 0.3s;
                     &:hover {
                         transform: scale(1.2);
-                        color: #fff;
+                        background-color: #aaa;
                     }
                 }
                 .hvr-fade:hover,

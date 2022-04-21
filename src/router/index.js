@@ -73,6 +73,26 @@ const routes = [
         component: MapData,
     },
     {
+        path: '/managerSys',
+        name: 'ManagerSys',
+        meta: {
+            title: '后台系统',
+            isShowHeader: false,
+            isShowFooter: false,
+        },
+        component: () => import('../views/HT'),
+    },
+    {
+        path: '/loginHT',
+        name: 'LoginHT',
+        meta: {
+            title: '后台系统登录',
+            isShowHeader: false,
+            isShowFooter: false,
+        },
+        component: () => import('../views/HT/loginHT'),
+    },
+    {
         path: '/test',
         name: 'test',
         meta: {
