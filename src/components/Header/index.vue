@@ -291,25 +291,25 @@
                         <div class="menu-dropdown menu-dropdown5">
                             <ul class="menu-sub">
                                 <li>
-                                    <a @click="goMapData(0)" class="menu-subbutton">
+                                    <a @click="goDataVisual(0, 'map')" class="menu-subbutton">
                                         <span class="menu-label">各省GDP</span>
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="menu-subbutton">
+                                    <a @click="goDataVisual(1, 'map')" class="menu-subbutton">
                                         <span class="menu-label">Et rhonc</span>
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="menu-subbutton">
+                                    <a @click="goDataVisual(2, 'map')" class="menu-subbutton">
                                         <span class="menu-label">Ligulaeg</span>
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="menu-subbutton">
+                                    <a @click="goDataVisual(3, 'map')" class="menu-subbutton">
                                         <span class="menu-label">Turpisqu</span>
                                         <span class="menu-desc">- Lorem ipsum dolor sit am</span>
                                     </a>
@@ -416,8 +416,12 @@ export default {
         },
     },
     methods: {
-        goDataVisual(type) {
-            this.$router.push({ path: '/dataVisualization', query: { type: type } });
+        goDataVisual(type, moudle) {
+            if (moudle === 'map') {
+                this.$router.push({ path: '/mapData', query: { type: type } });
+            } else {
+                this.$router.push({ path: '/dataVisualization', query: { type: type } });
+            }
         },
         goMapData(type) {
             this.$router.push({ path: '/mapData', query: { type: type } });
@@ -440,7 +444,8 @@ export default {
             this.$router.push({ path: '/login', query: 'magiss' });
         },
         goHT() {
-            this.$router.push({ path: '/managerSys' });
+            let router = this.$router.resolve({ path: '/managerSys' });
+            window.open(router.href, '_blank');
         },
         loadingOpen() {
             this.fullscreenLoading = true;

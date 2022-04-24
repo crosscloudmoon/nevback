@@ -1,32 +1,34 @@
 <template>
     <div class="loginHT">
-        <el-form
-            :model="ruleForm"
-            status-icon
-            :rules="rules"
-            ref="ruleForm"
-            label-width="100px"
-            class="ruleForm"
-        >
-            <el-form-item label="帐号" prop="account">
-                <el-input v-model.number="ruleForm.account"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="pass">
-                <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码" prop="checkPass">
-                <el-input
-                    type="password"
-                    v-model="ruleForm.checkPass"
-                    autocomplete="off"
-                ></el-input>
-            </el-form-item>
+        <div class="loginWrap">
+            <el-form
+                :model="ruleForm"
+                status-icon
+                :rules="rules"
+                ref="ruleForm"
+                label-width="100px"
+                class="ruleForm"
+            >
+                <el-form-item label="帐号" prop="account">
+                    <el-input v-model.number="ruleForm.account"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="pass">
+                    <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" prop="checkPass">
+                    <el-input
+                        type="password"
+                        v-model="ruleForm.checkPass"
+                        autocomplete="off"
+                    ></el-input>
+                </el-form-item>
 
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
-            </el-form-item>
-        </el-form>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
 <script>
@@ -101,12 +103,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 .loginHT {
-    margin: 0 auto;
-    margin-top: 200px;
-    width: 550px;
-    height: 500px;
-    padding: 50px 50px;
-    background-color: rgb(116, 116, 196);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../home/theme/image/4yllzd.jpg');
+    background-size: 100% auto;
+    .loginWrap {
+        margin: 0 auto;
+        margin-top: 200px;
+        width: 550px;
+        height: 500px;
+        padding: 50px 50px;
+        background-color: rgb(116, 116, 196);
+    }
 }
 </style>
 <style lang="scss">

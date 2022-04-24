@@ -75,32 +75,70 @@ const routes = [
     {
         path: '/managerSys',
         name: 'ManagerSys',
+        // redirect: '/role2',
+
         meta: {
             title: '后台系统',
             isShowHeader: false,
             isShowFooter: false,
         },
         component: () => import('../views/HT'),
-    },
-    {
-        path: '/loginHT',
-        name: 'LoginHT',
-        meta: {
-            title: '后台系统登录',
-            isShowHeader: false,
-            isShowFooter: false,
-        },
-        component: () => import('../views/HT/loginHT'),
-    },
-    {
-        path: '/test',
-        name: 'test',
-        meta: {
-            title: 'test',
-            isShowHeader: false,
-            isShowFooter: false,
-        },
-        component: test,
+        children: [
+            {
+                path: '/homeHT',
+                name: 'HomeHT',
+                meta: {
+                    title: '后台系统首页',
+                    isShowHeader: false,
+                    isShowFooter: false,
+                },
+                component: () => import('../views/HT/home'),
+            },
+            {
+                path: '/role2',
+                name: 'Role2',
+                // redirect: '/managerSys',
+                meta: {
+                    title: '后台角色分配',
+                    isShowHeader: false,
+                    isShowFooter: false,
+                },
+                // component: { HT: () => import('../views/HT/roleManager') },
+                component: () => import('../views/HT/role2'),
+            },
+            {
+                path: '/roleManager',
+                name: 'RoleManager',
+
+                meta: {
+                    title: '后台角色管理',
+                    isShowHeader: false,
+                    isShowFooter: false,
+                },
+                // component: { HT: () => import('../views/HT/roleManager') },
+                component: () => import('../views/HT/roleManager'),
+            },
+            {
+                path: '/loginHT',
+                name: 'LoginHT',
+                meta: {
+                    title: '后台系统登录',
+                    isShowHeader: false,
+                    isShowFooter: false,
+                },
+                component: () => import('../views/HT/loginHT'),
+            },
+            {
+                path: '/test',
+                name: 'test',
+                meta: {
+                    title: 'test',
+                    isShowHeader: false,
+                    isShowFooter: false,
+                },
+                component: test,
+            },
+        ],
     },
 ];
 

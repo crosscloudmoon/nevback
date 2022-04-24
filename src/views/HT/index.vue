@@ -1,12 +1,87 @@
 <template>
-    <div class="managerSystem">ssss</div>
+    <div class="managerSystem">
+        <div class="menuList">
+            <div class="topTitle"><span class="titleContent">后台管理系统</span></div>
+            <div class="treeList">
+                <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+                    <el-radio-button :label="false">展开</el-radio-button>
+                    <el-radio-button :label="true">收起</el-radio-button>
+                </el-radio-group> -->
+                <el-menu
+                    default-active="1-4-1"
+                    class="el-menu-vertical-demo"
+                    @open="handleOpen"
+                    @close="handleClose"
+                    :collapse="isCollapse"
+                    background-color="#2486b9"
+                    text-color="#fff"
+                    router="true"
+                >
+                    <el-menu-item index="/homeHT">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">首页</span>
+                    </el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span slot="title">权限管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <!-- <span slot="title">分组一</span> -->
+                            <el-menu-item index="role2">
+                                <!-- <router-link to="/role2">角色分配</router-link> -->
+                                角色分配
+                            </el-menu-item>
+                            <el-menu-item index="roleManager">
+                                <!-- <router-link to="/roleManager">角色管理</router-link> -->
+                                角色管理
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+
+                    <!-- <el-menu-item index="3" disabled>
+                        <i class="el-icon-document"></i>
+                        <span slot="title">导航三</span>
+                    </el-menu-item> -->
+                    <el-menu-item index="4">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">导航</span>
+                    </el-menu-item>
+                </el-menu>
+            </div>
+        </div>
+        <div class="managerContent">
+            <div class="headTop">
+                <div class="avatar">
+                    <div>
+                        <el-dropdown>
+                            <el-avatar
+                                class="el-dropdown-link"
+                                src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                            ></el-avatar>
+                            <!-- <span class="el-dropdown-link">
+                                下拉菜单
+                                <i class="el-icon-arrow-down el-icon--right"></i>
+                            </span> -->
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>帐号信息</el-dropdown-item>
+                                <el-dropdown-item>登出</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="manageMain"><router-view /></div>
+        </div>
+    </div>
 </template>
 <script>
 export default {
     name: 'ManagerSystem',
-    components: {},
     data() {
-        return {};
+        return {
+            isCollapse: false,
+        };
     },
     mounted() {
         if (this.$store.state.idCard === true) {
@@ -15,10 +90,84 @@ export default {
             // this.$router.push({ path: '/loginHT' });
         }
     },
-    methods: {},
+    methods: {
+        handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        handleClose(key, keyPath) {
+            console.log(key, keyPath);
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
 .managerSystem {
+    display: flex;
+    flex-direction: row;
+    .menuList {
+        flex: 2;
+        height: 100vh;
+        background-color: #2486b9;
+        .topTitle {
+            height: 80px;
+            padding: 10px 0;
+            .titleContent {
+                font-size: 48px;
+                color: #fff;
+            }
+        }
+        .treeList {
+        }
+    }
+    .managerContent {
+        flex: 8;
+        height: 100vh;
+        background-color: #e6e6e6;
+        .headTop {
+            height: 80px;
+            background-color: #619ac3;
+        }
+        .manageMain {
+            padding: 80px 40px;
+        }
+    }
+}
+</style>
+<style lang="scss">
+.managerSystem {
+    .menuList {
+        .treeList {
+            .el-menu-vertical-demo:not(.el-menu--collapse) {
+                width: 100%;
+                min-height: 800px;
+            }
+            .el-submenu__title {
+                font-size: 28px;
+            }
+            .el-menu-item {
+                font-size: 22px;
+            }
+        }
+    }
+    .managerContent {
+        .headTop {
+            .avatar {
+                position: absolute;
+                right: 50px;
+                top: 20px;
+                .el-dropdown-link {
+                    cursor: pointer;
+                    color: #409eff;
+                }
+                .el-icon-arrow-down {
+                    font-size: 12px;
+                }
+            }
+        }
+        .managerContent {
+            .manageMain {
+            }
+        }
+    }
 }
 </style>
