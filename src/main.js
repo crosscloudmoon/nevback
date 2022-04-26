@@ -17,7 +17,6 @@ import Loading from './views/components/loading';
 // Vue.use(CustomSource);
 // Vue.component('Header', Header);
 Vue.component('Loading', Loading);
-
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 new Vue({

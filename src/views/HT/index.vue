@@ -28,7 +28,7 @@
                         </template>
                         <el-menu-item-group>
                             <!-- <span slot="title">分组一</span> -->
-                            <el-menu-item index="role2">
+                            <el-menu-item index="roleData">
                                 <!-- <router-link to="/role2">角色分配</router-link> -->
                                 角色分配
                             </el-menu-item>
@@ -65,17 +65,22 @@
                             </span> -->
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>帐号信息</el-dropdown-item>
-                                <el-dropdown-item>登出</el-dropdown-item>
+                                <el-dropdown-item>
+                                    <router-link to="/loginHT">登出</router-link>
+                                </el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </div>
                 </div>
             </div>
-            <div class="manageMain"><router-view /></div>
+            <div class="manageMain">
+                <div class="manageWrap ownScroll"><router-view /></div>
+            </div>
         </div>
     </div>
 </template>
 <script>
+// import { test } from 'S/HT.js';
 export default {
     name: 'ManagerSystem',
     data() {
@@ -84,6 +89,7 @@ export default {
         };
     },
     mounted() {
+        this.test();
         if (this.$store.state.idCard === true) {
             return;
         } else {
@@ -91,6 +97,9 @@ export default {
         }
     },
     methods: {
+        async test() {
+            await test('');
+        },
         handleOpen(key, keyPath) {
             console.log(key, keyPath);
         },
@@ -105,14 +114,14 @@ export default {
     display: flex;
     flex-direction: row;
     .menuList {
-        flex: 2;
+        flex: 1.5;
         height: 100vh;
         background-color: #2486b9;
         .topTitle {
             height: 80px;
             padding: 10px 0;
             .titleContent {
-                font-size: 48px;
+                font-size: 42px;
                 color: #fff;
             }
         }
@@ -128,7 +137,17 @@ export default {
             background-color: #619ac3;
         }
         .manageMain {
-            padding: 80px 40px;
+            padding: 50px 40px;
+            .manageWrap {
+                overflow: auto;
+                box-sizing: border-box;
+                height: calc(100vh - 180px);
+                background-color: #fff;
+                padding: 20px;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
         }
     }
 }

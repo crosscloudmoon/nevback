@@ -8,6 +8,7 @@ module.exports = {
             .set('@', resolve('src'))
             .set('C', resolve('src/components'))
             .set('U', resolve('src/utils'))
+            .set('S', resolve('src/service'))
             .set('V', resolve('src/views'));
     },
 };

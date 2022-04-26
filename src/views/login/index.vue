@@ -2,26 +2,9 @@
     <div class="loginIndex">
         <div class="login-wrap">
             <h1>Login</h1>
-            <!-- <form :model="formInf" action="" class="login-content">
-                <div class="items">
-                    <input :model="formInf.account" type="text" class="account" required />
-                    <label for="">User</label>
-                </div>
-                <div class="items">
-                    <input :model="testmodle" type="text" class="password" required />
-                    <label for="">PassWords</label>
-                </div>
-                <button @click="sumbitForm(formInf)" type="button" class="btn">
-                    SUBMIT
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </form> -->
 
-            <el-form :model="InfForm" class="login-content">
-                <el-form-item class="items">
+            <el-form :model="InfForm" class="login-content" ref="InfForm">
+                <el-form-item class="items" :rules="returnRules().account" prop="account">
                     <el-input
                         v-model="InfForm.account"
                         class="account"
@@ -30,7 +13,7 @@
                         required
                     ></el-input>
                 </el-form-item>
-                <el-form-item class="items">
+                <el-form-item class="items" :rules="returnRules().password" prop="password">
                     <el-input
                         v-model="InfForm.password"
                         class="password"
@@ -39,7 +22,7 @@
                         required
                     ></el-input>
                 </el-form-item>
-                <button @click="loginT(InfForm)" type="button" class="btn">
+                <button @click="submitForm('InfForm')" type="button" class="btn">
                     SUBMIT
                     <span></span>
                     <span></span>
@@ -51,15 +34,13 @@
     </div>
 </template>
 <script>
+import { setCookie } from 'U/utilCookie';
+import { toLogin } from '@/service/MH';
 export default {
     name: 'Login',
     components: {},
     data() {
         return {
-            formInf: {
-                account: '',
-                password: '',
-            },
             testmodle: '',
             InfForm: {
                 account: '',
@@ -67,33 +48,111 @@ export default {
             },
         };
     },
-    mounted() {
-        console.log('form', this.formInf);
-    },
-    watch: {
-        formInf: function (newVal, oldVal) {
-            console.log('form', newVal);
-        },
-    },
+    mounted() {},
+    watch: {},
     methods: {
-        sumbitForm(param) {
-            // console.log('account', this.formInf.account, 'password', this.formInf.password);
-            // console.log('22', this.testmodle);
-            // if (param.account === 'admin' && param.password === '123') {
-            //     this.$router.push({ path: '/' });
-            // }
-            console.log('param', param);
-        },
-
         // 登录
-        loginT(param) {
-            if (param.account === 'admin' && param.password === '123') {
-                this.$store.state.userCard = true;
-                this.$router.push({ path: '/' });
-            } else {
-                this.$message({ message: '帐号或密码错误', type: 'error' });
+        // loginT(param) {
+        //     if (param.account === 'admin' && param.password === '123') {
+        //         this.$store.state.userCard = true;
+        //         this.$router.push({ path: '/' });
+        //     } else {
+        //         this.$message({ message: '帐号或密码错误', type: 'error' });
+        //     }
+        //     console.log('param', param);
+        // },
+        // 校验方法
+        returnRules() {
+            let rules = {
+                account: [{ validator: this.validateAccount, trigger: 'blur' }],
+                password: [{ validator: this.validateAccount, trigger: 'blur' }],
+            };
+            return rules;
+        },
+        // 账户校验
+        validateAccount(rule, value, callback) {
+            // if (value === '') {
+            //     callback(new Error('请输入用户名或邮箱'));
+            // } else {
+            //     Promise.all([checkEmailFun({ email: value }), checkNameFun({ name: value })]).then(
+            //         resArr => {
+            //             let bol = resArr.some(item => item.data.code === '200');
+            //             if (bol) {
+            //                 callback();
+            //             } else {
+            //                 callback(new Error('该账户不存在'));
+            //             }
+            //         }
+            //     );
+            // }
+            if (value === '') {
+                // callback(new Error('请输入用户名或邮箱'));
+                this.$message.error('请输入用户名或邮箱');
             }
-            console.log('param', param);
+        },
+        // 提交请求
+        async submitForm(formName) {
+            let _self = this;
+            this.$refs[formName].validate(valid => {
+                let pas = '';
+                if (_self.InfForm.password) {
+                    pas = _self.InfForm.password.trim().toString();
+                }
+
+                let param = {
+                    name: _self.InfForm.account,
+                    password: pas,
+                    userType: '1',
+                };
+                if (valid) {
+                    this.loginT(param);
+                } else {
+                    this.$message.error('请输入用户名或邮箱');
+                    return false;
+                }
+            });
+        },
+        // 登录
+        async loginT(param) {
+            let resData = await toLogin(param);
+            if (resData.status === 200) {
+                if (
+                    resData.data.status === '104' ||
+                    resData.data.status === '105' ||
+                    resData.data.status === '106'
+                ) {
+                    this.$message(resData.data.message);
+                } else if (resData.data.status === '200') {
+                    this.userInfChange(resData.data);
+                    // 勾选保存用户名密码
+                    if (this.checked) {
+                        this.savePassword();
+                    }
+                }
+            } else {
+                this.$message({
+                    message: '登陆失败，请联系管理员。',
+                    type: 'warning',
+                    offset: 200,
+                });
+            }
+        },
+        // 登陆修改信息
+        async userInfChange(data) {
+            let token = data.token;
+            data.user.token = token;
+            localStorage.setItem('AuthorizationZ', token);
+            localStorage.setItem(
+                'userBackInf',
+                JSON.stringify({ name: data.user.username, token: token })
+            );
+            // this.$store.commit('login/setUserInf', data.user);
+            // 跳转到指定的路由
+            this.$router.push({ path: '/' });
+        },
+        // 保存密码
+        savePassword() {
+            setCookie(this.InfForm.account, this.InfForm.password);
         },
     },
 };

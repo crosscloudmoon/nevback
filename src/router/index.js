@@ -73,9 +73,19 @@ const routes = [
         component: MapData,
     },
     {
+        path: '/loginHT',
+        name: 'LoginHT',
+        meta: {
+            title: '后台系统登录',
+            isShowHeader: false,
+            isShowFooter: false,
+        },
+        component: () => import('../views/HT/loginHT'),
+    },
+    {
         path: '/managerSys',
         name: 'ManagerSys',
-        // redirect: '/role2',
+        redirect: '/homeHT',
 
         meta: {
             title: '后台系统',
@@ -95,16 +105,12 @@ const routes = [
                 component: () => import('../views/HT/home'),
             },
             {
-                path: '/role2',
-                name: 'Role2',
-                // redirect: '/managerSys',
+                path: '/roleData',
+                name: 'RoleData',
                 meta: {
                     title: '后台角色分配',
-                    isShowHeader: false,
-                    isShowFooter: false,
                 },
-                // component: { HT: () => import('../views/HT/roleManager') },
-                component: () => import('../views/HT/role2'),
+                component: () => import('../views/HT/roleData'),
             },
             {
                 path: '/roleManager',
@@ -112,22 +118,11 @@ const routes = [
 
                 meta: {
                     title: '后台角色管理',
-                    isShowHeader: false,
-                    isShowFooter: false,
                 },
                 // component: { HT: () => import('../views/HT/roleManager') },
                 component: () => import('../views/HT/roleManager'),
             },
-            {
-                path: '/loginHT',
-                name: 'LoginHT',
-                meta: {
-                    title: '后台系统登录',
-                    isShowHeader: false,
-                    isShowFooter: false,
-                },
-                component: () => import('../views/HT/loginHT'),
-            },
+
             {
                 path: '/test',
                 name: 'test',
@@ -146,6 +141,30 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes,
+});
+
+const originalPush = VueRouter.prototype.push;
+// 修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err);
+};
+
+/**
+ * 路由拦截
+ */
+router.beforeEach(async (to, from, next) => {
+    let token = window.localStorage.getItem('AuthorizationZ');
+    if (to.path === '/login') {
+        next();
+    } else {
+        if (!token || token === 'undefined') {
+            next();
+            // next('/login');
+        } else {
+            // 校验token
+            next();
+        }
+    }
 });
 
 export default router;

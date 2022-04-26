@@ -1,6 +1,6 @@
 <template>
     <div class="loginHT">
-        <div class="loginWrap">
+        <div class="loginWrap" style="position: relative">
             <el-form
                 :model="ruleForm"
                 status-icon
@@ -9,25 +9,27 @@
                 label-width="100px"
                 class="ruleForm"
             >
-                <el-form-item label="帐号" prop="account">
-                    <el-input v-model.number="ruleForm.account"></el-input>
+                <el-form-item :label="account.id" prop="account">
+                    <el-input v-model="ruleForm.account"></el-input>
                 </el-form-item>
-                <el-form-item label="密码" prop="pass">
+                <el-form-item :label="account.pas" prop="pass">
                     <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码" prop="checkPass">
-                    <el-input
-                        type="password"
-                        v-model="ruleForm.checkPass"
-                        autocomplete="off"
-                    ></el-input>
-                </el-form-item>
-
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                    <el-button type="primary" @click="submitForm('ruleForm')">
+                        {{ account.login }}
+                    </el-button>
                     <el-button @click="resetForm('ruleForm')">重置</el-button>
                 </el-form-item>
             </el-form>
+            <el-button
+                v-show="account.login === '登录'"
+                style="position: absolute; bottom: 20px; left: 20px"
+                type="primary"
+                @click="toSignup()"
+            >
+                注册
+            </el-button>
         </div>
     </div>
 </template>
@@ -36,23 +38,34 @@ export default {
     name: 'login',
     components: {},
     data() {
-        let checkAge = (rule, value, callback) => {
-            if (!value) {
-                return callback(new Error('年龄不能为空'));
-            }
+        return {
+            account: { id: '帐号', pas: '密码', login: '登录' },
+            ruleForm: {
+                pass: '',
+                account: '',
+            },
+            rules: {
+                pass: [{ validator: this.validatePass, trigger: 'blur' }],
+                account: [{ validator: this.checkAccount, trigger: 'blur' }],
+            },
+        };
+    },
+    methods: {
+        toSignup() {
+            this.account.id = '创建新帐号';
+            this.account.pas = '创建密码';
+            this.account.login = '注册';
+        },
+        checkAccount(rule, value, callback) {
             setTimeout(() => {
-                if (!Number.isInteger(value)) {
-                    callback(new Error('请输入数字值'));
+                if (!value) {
+                    callback(new Error('请输入帐号'));
                 } else {
-                    if (value < 18) {
-                        callback(new Error('必须年满18岁'));
-                    } else {
-                        callback();
-                    }
+                    callback();
                 }
             }, 1000);
-        };
-        let validatePass = (rule, value, callback) => {
+        },
+        validatePass(rule, value, callback) {
             if (value === '') {
                 callback(new Error('请输入密码'));
             } else {
@@ -61,42 +74,21 @@ export default {
                 }
                 callback();
             }
-        };
-        let validatePass2 = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请再次输入密码'));
-            } else if (value !== this.ruleForm.pass) {
-                callback(new Error('两次输入密码不一致!'));
-            } else {
-                callback();
-            }
-        };
-        return {
-            ruleForm: {
-                pass: '',
-                checkPass: '',
-                account: '',
-            },
-            rules: {
-                pass: [{ validator: validatePass, trigger: 'blur' }],
-                checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-                account: [{ validator: checkAge, trigger: 'blur' }],
-            },
-        };
-    },
-    methods: {
+        },
         submitForm(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
                     alert('submit!');
                 } else {
-                    console.log('error submit!!');
                     return false;
                 }
             });
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
+            this.account.login = '登录';
+            this.account.id = '帐号';
+            this.account.pas = '密码';
         },
     },
 };
@@ -115,7 +107,7 @@ export default {
         width: 550px;
         height: 500px;
         padding: 50px 50px;
-        background-color: rgb(116, 116, 196);
+        background-color: #3170a799;
     }
 }
 </style>
