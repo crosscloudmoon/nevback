@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { getEchartsData } from '@/service/MH';
 import * as echarts from 'echarts';
 export default {
     name: 'MapData',
@@ -50,50 +51,26 @@ export default {
         },
     },
     methods: {
-        echartsLoadGdp() {
+        async echartsLoadGdp() {
             let myChart = echarts.init(document.getElementById('gdpTest'));
 
             let years = ['2020', '2021', '2022'];
-            let jdData = [
-                [
-                    '日  本',
-                    '韩  国',
-                    '印度尼西亚',
-                    '马来西亚',
-                    '菲律宾',
-                    '新加坡',
-                    '泰  国',
-                    '印  度',
-                    '越  南',
-                ],
-                [
-                    '日  本',
-                    '韩  国',
-                    '印度尼西亚',
-                    '马来西亚',
-                    '菲律宾',
-                    '新加坡',
-                    '泰  国',
-                    '印  度',
-                    '越  南',
-                ],
-                [
-                    '日  本',
-                    '韩  国',
-                    '印度尼西亚',
-                    '马来西亚',
-                    '菲律宾',
-                    '新加坡',
-                    '泰  国',
-                    '印  度',
-                    '越  南',
-                ],
-            ];
-            let data = [
-                [2371, 36224, 12956, 2499, 4778, 594, 717, 534, 16487],
-                [1765, 36982, 15371, 3643, 2871, 762, 962, 757, 34414],
-                [8519, 38344, 18495, 3531, 1369, 544, 2005, 975, 33855],
-            ];
+            let jdData = [];
+            let data = [];
+            for (let i = 2020; i <= 2022; i++) {
+                await getEchartsData(1, i).then(res => {
+                    let namedata = [];
+                    let valuedata = [];
+                    console.log('res', res);
+                    res.data.data.map(item => {
+                        namedata.push(item.name);
+                        valuedata.push(item.value);
+                        return item;
+                    });
+                    jdData.push(namedata);
+                    data.push(valuedata);
+                });
+            }
             let option = {
                 baseOption: {
                     backgroundColor: '#2c343c', // 背景颜色
@@ -310,7 +287,7 @@ export default {
                                         ];
                                         // return colorList[params.dataIndex]
 
-                                        console.log('111', params.name); // 打印序列
+                                        // console.log('111', params.name); // 打印序列
                                         return colorList[jdData[0].indexOf(params.name)];
                                     },
                                 },
@@ -860,7 +837,7 @@ export default {
             };
 
             let seriesData = [];
-            console.log(chartData.seriesData);
+            // console.log(chartData.seriesData);
             if (chartData.seriesDash) {
                 let len = chartData.seriesData.length;
                 let minusArr = [];
@@ -1145,7 +1122,7 @@ export default {
 
             myChart.setOption(option);
         },
-        echartsLoad4() {
+        async echartsLoad4() {
             let myChart = echarts.init(document.getElementById('gdpTest4'));
             const CubeLeft = echarts.graphic.extendShape({
                 shape: {
@@ -1204,7 +1181,15 @@ export default {
             echarts.graphic.registerShape('CubeRight', CubeRight);
             echarts.graphic.registerShape('CubeTop', CubeTop);
             const MAX = [6000, 6000, 6000, 6000, 6000, 5000, 4000, 3000, 2000, 4000, 3000, 2000];
-            const VALUE = [2012, 1230, 3790, 2349];
+            const VALUE = [];
+            const DATA = [];
+            await getEchartsData(3).then(res => {
+                res.data.data.map(item => {
+                    DATA.push(item.name);
+                    VALUE.push(item.value);
+                    return item;
+                });
+            });
             let option = {
                 backgroundColor: '#010d3a',
                 title: {
@@ -1225,7 +1210,7 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: ['德州', '德城区', '陵城区', '禹城市'],
+                    data: DATA,
                     axisLine: {
                         show: true,
                         lineStyle: {

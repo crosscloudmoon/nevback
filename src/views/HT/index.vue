@@ -64,9 +64,14 @@
                                 <i class="el-icon-arrow-down el-icon--right"></i>
                             </span> -->
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>帐号信息</el-dropdown-item>
+                                <el-dropdown-item>帐号信息: admin</el-dropdown-item>
                                 <el-dropdown-item>
-                                    <router-link to="/loginHT">登出</router-link>
+                                    <router-link
+                                        to="/loginHT"
+                                        @click.native="$store.state.idCardHT = false"
+                                    >
+                                        登出
+                                    </router-link>
                                 </el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -89,16 +94,25 @@ export default {
         };
     },
     mounted() {
-        this.test();
-        if (this.$store.state.idCard === true) {
+        if (this.$store.state.idCardHT === true) {
             return;
         } else {
-            // this.$router.push({ path: '/loginHT' });
+            this.$router.push({ path: '/loginHT' });
         }
     },
+    watch: {
+        '$store.state.idCardHT': function (newVal) {
+            if (newVal === true) {
+                return;
+            } else {
+                this.$router.push({ path: '/loginHT' });
+            }
+        },
+    },
     methods: {
-        async test() {
-            await test('');
+        out() {
+            this.$store.state.idCardHT = false;
+            this.$router.push({ path: '/loginHT' });
         },
         handleOpen(key, keyPath) {
             console.log(key, keyPath);

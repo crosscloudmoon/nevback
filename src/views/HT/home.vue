@@ -13,6 +13,7 @@ import * as echarts from 'echarts';
 export default {
     name: 'IndexHT',
     mounted() {
+        this.test();
         this.echartsLoad1();
         this.echartsLoad2();
         this.echartsLoad3();

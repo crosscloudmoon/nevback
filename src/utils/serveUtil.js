@@ -10,11 +10,11 @@ const serveObgFun = function (serveObg) {
     serveObg.interceptors.request.use(
         function (config) {
             if (
-                !config.headers.AuthorizationZ &&
-                localStorage.getItem('AuthorizationZ') &&
-                localStorage.getItem('AuthorizationZ') !== 'undefined'
+                !config.headers.Authorization &&
+                localStorage.getItem('Authorization') &&
+                localStorage.getItem('Authorization') !== 'undefined'
             ) {
-                config.headers.AuthorizationZ = localStorage.getItem('AuthorizationZ');
+                config.headers.Authorization = localStorage.getItem('Authorization');
             }
             return config;
         },
@@ -31,14 +31,14 @@ const serveObgFun = function (serveObg) {
         error => {
             if (error.response) {
                 switch (error.response.status) {
-                    case 401:
-                        // 返回 401 清除token信息并跳转到登录页面
-                        localStorage.setItem('AuthorizationZ', '');
-                        router.replace({
-                            path: '/signup',
-                            query: { redirect: router.currentRoute.fullPath },
-                        });
-                        return error;
+                    // case 401:
+                    //     // 返回 401 清除token信息并跳转到登录页面
+                    //     localStorage.setItem('Authorization', '');
+                    //     router.replace({
+                    //         path: '/loginHT',
+                    //         query: { redirect: router.currentRoute.fullPath },
+                    //     });
+                    //     return error;
                     case 404:
                         Vue.prototype.$message({
                             message: '服务器连接异常',

@@ -153,7 +153,7 @@ VueRouter.prototype.push = function push(location) {
  * 路由拦截
  */
 router.beforeEach(async (to, from, next) => {
-    let token = window.localStorage.getItem('AuthorizationZ');
+    let token = window.localStorage.getItem('Authorization');
     if (to.path === '/login') {
         next();
     } else {
@@ -163,6 +163,7 @@ router.beforeEach(async (to, from, next) => {
         } else {
             // 校验token
             next();
+            this.$store.state.loginStatus = '登出';
         }
     }
 });

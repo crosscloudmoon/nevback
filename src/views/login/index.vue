@@ -48,19 +48,17 @@ export default {
             },
         };
     },
-    mounted() {},
-    watch: {},
+    mounted() {
+        this.$store.state.idCard = !this.$store.state.idCard;
+    },
+    watch: {
+        '$store.state.idCard': function (newVal) {
+            if (newVal === false) {
+                this.$store.state.loginStatus = '登录';
+            }
+        },
+    },
     methods: {
-        // 登录
-        // loginT(param) {
-        //     if (param.account === 'admin' && param.password === '123') {
-        //         this.$store.state.userCard = true;
-        //         this.$router.push({ path: '/' });
-        //     } else {
-        //         this.$message({ message: '帐号或密码错误', type: 'error' });
-        //     }
-        //     console.log('param', param);
-        // },
         // 校验方法
         returnRules() {
             let rules = {
@@ -86,31 +84,39 @@ export default {
             //     );
             // }
             if (value === '') {
-                // callback(new Error('请输入用户名或邮箱'));
                 this.$message.error('请输入用户名或邮箱');
             }
         },
         // 提交请求
         async submitForm(formName) {
             let _self = this;
-            this.$refs[formName].validate(valid => {
-                let pas = '';
-                if (_self.InfForm.password) {
-                    pas = _self.InfForm.password.trim().toString();
-                }
+            let pas = _self.InfForm.password.trim().toString();
+            let param = {
+                name: _self.InfForm.account,
+                password: pas,
+                type: '0',
+            };
+            // debugger;
+            this.loginT(param);
 
-                let param = {
-                    name: _self.InfForm.account,
-                    password: pas,
-                    userType: '1',
-                };
-                if (valid) {
-                    this.loginT(param);
-                } else {
-                    this.$message.error('请输入用户名或邮箱');
-                    return false;
-                }
-            });
+            // this.$refs[formName].validate(valid => {
+            //     let pas = '';
+            //     if (_self.InfForm.password) {
+            //         pas = _self.InfForm.password.trim().toString();
+            //     }
+
+            //     let param = {
+            //         name: _self.InfForm.account,
+            //         password: pas,
+            //         userType: '1',
+            //     };
+            //     if (valid) {
+            //         this.loginT(param);
+            //     } else {
+            //         this.$message.error('请输入用户名或邮箱');
+            //         return false;
+            //     }
+            // });
         },
         // 登录
         async loginT(param) {
@@ -118,11 +124,18 @@ export default {
             if (resData.status === 200) {
                 if (
                     resData.data.status === '104' ||
+                    resData.data.status === '102' ||
                     resData.data.status === '105' ||
                     resData.data.status === '106'
                 ) {
                     this.$message(resData.data.message);
                 } else if (resData.data.status === '200') {
+                    this.$store.state.loginStatus = resData.data.user.name;
+                    this.$store.state.idCard = true;
+                    this.$store.state.userCard = resData.data.user.role;
+                    console.log('usercard', this.$store.state.userCard);
+                    // console.log('use', resData);
+
                     this.userInfChange(resData.data);
                     // 勾选保存用户名密码
                     if (this.checked) {
@@ -141,7 +154,7 @@ export default {
         async userInfChange(data) {
             let token = data.token;
             data.user.token = token;
-            localStorage.setItem('AuthorizationZ', token);
+            localStorage.setItem('Authorization', token);
             localStorage.setItem(
                 'userBackInf',
                 JSON.stringify({ name: data.user.username, token: token })

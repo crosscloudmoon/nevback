@@ -220,6 +220,7 @@ import CommonJs from 'U/common';
 import dialogs from 'C/common/dialogs';
 import noneDataStyle from 'C/common/noneData';
 // import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
+// import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
 import { delEmpty } from 'U/dealwithParam';
 export default {
     name: 'roleData',
@@ -314,21 +315,21 @@ export default {
             target.title = target.innerText;
         },
         async getUserDataMeth() {
-            // let datas = await getUserData(
-            //     delEmpty({
-            //         currentPage: this.currentPage,
-            //         pageSize: this.pageSize,
-            //         name: this.userName,
-            //         email: this.userEmails,
-            //     })
-            // );
-            // if (datas.status === 200) {
-            //     if (datas.data.rows) {
-            //         this.tableData = datas.data;
-            //     } else {
-            //         // this.$Message.error(datas.message);
-            //     }
-            // }
+            let datas = await getUserData(
+                delEmpty({
+                    currentPage: this.currentPage,
+                    pageSize: this.pageSize,
+                    name: this.userName,
+                    email: this.userEmails,
+                })
+            );
+            if (datas.status === 200) {
+                if (datas.data.rows) {
+                    this.tableData = datas.data;
+                } else {
+                    // this.$Message.error(datas.message);
+                }
+            }
         },
         // 多选框改变
         handleSelectionChange(val) {

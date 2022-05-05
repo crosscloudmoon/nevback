@@ -318,7 +318,7 @@
                         </div>
                     </li>
                     <li class="menu-right">
-                        <el-link @click="loadingOpenObserve" class="menu-button">
+                        <el-link @click="goDataVisual(null, 'satellite')" class="menu-button">
                             <span class="menu-label">卫星观测</span>
                         </el-link>
                     </li>
@@ -346,12 +346,29 @@
                         </el-button>
                     </div>
                     <div @click="goLogin">
+                        <div v-show="$store.state.idCard">
+                            <el-dropdown style="position: absolute; top: 0px">
+                                <el-avatar
+                                    class="el-dropdown-link"
+                                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                                ></el-avatar>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>
+                                        用户：{{ $store.state.loginStatus }}
+                                    </el-dropdown-item>
+                                    <el-dropdown-item>
+                                        <router-link to="/login">登出</router-link>
+                                    </el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </div>
                         <el-button
                             @click="loadingOpen"
                             v-loading.fullscreen.lock="fullscreenLoading"
                             class="loginBtn hvr-fade"
+                            v-if="$store.state.idCard === false"
                         >
-                            <span class="loginTitle">登录</span>
+                            <span class="loginTitle">{{ $store.state.loginStatus }}</span>
                         </el-button>
                     </div>
                     <!-- <el-button @click="loadingOpen" v-loading.fullscreen.lock="fullscreenLoading">
@@ -417,15 +434,30 @@ export default {
     },
     methods: {
         goDataVisual(type, moudle) {
-            if (moudle === 'map') {
-                this.$router.push({ path: '/mapData', query: { type: type } });
+            if (this.$store.state.userCard === 'vip') {
+                if (moudle === 'map') {
+                    this.$router.push({ path: '/mapData', query: { type: type } });
+                } else if (moudle === 'satellite') {
+                    const loading = this.$loading({
+                        lock: true,
+                        text: 'Loading',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)',
+                    });
+                    setTimeout(() => {
+                        loading.close();
+                        window.open('http://36.112.11.166:8083/satellite/#/', '_blank');
+                    }, 1000);
+                } else {
+                    this.$router.push({ path: '/dataVisualization', query: { type: type } });
+                }
+            } else if (this.$store.state.idCard === false) {
+                this.$message.warning('请登录后浏览');
             } else {
-                this.$router.push({ path: '/dataVisualization', query: { type: type } });
+                this.$message.error('用户未有权限浏览');
             }
         },
-        goMapData(type) {
-            this.$router.push({ path: '/mapData', query: { type: type } });
-        },
+
         // 动态控制header背景
         headerChangeBg() {
             if (this.$route.path === '/') {
@@ -451,21 +483,6 @@ export default {
             this.fullscreenLoading = true;
             setTimeout(() => {
                 this.fullscreenLoading = false;
-            }, 1000);
-        },
-        loadingOpenObserve() {
-            // Loading.service({
-            //     fullscreen: true,
-            // });
-            const loading = this.$loading({
-                lock: true,
-                text: 'Loading',
-                spinner: 'el-icon-loading',
-                background: 'rgba(0, 0, 0, 0.7)',
-            });
-            setTimeout(() => {
-                loading.close();
-                window.open('http://36.112.11.166:8083/satellite/#/', '_self');
             }, 1000);
         },
     },
@@ -499,6 +516,7 @@ export default {
                 }
                 .loginBtn {
                     // width: 60px;
+                    margin-right: 30px;
                     font-size: 16px;
                     background-color: transparent;
                     color: #fff;

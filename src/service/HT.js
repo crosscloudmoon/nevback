@@ -1,4 +1,7 @@
 import service from './index.js';
 
-// test axios
-export const test = param => service('get', 'homeManagerController/queryAboutUsList', param);
+//  登录
+export const toLogin = param => service('post', 'loginController/login', param);
+
+//  查看用户
+export const getAllUser = param => service('post', 'loginController/login', param);

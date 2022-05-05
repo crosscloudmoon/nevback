@@ -7,6 +7,8 @@ export default new Vuex.Store({
     state: {
         userCard: null,
         idCard: false,
+        idCardHT: false,
+        loginStatus: '登录',
     },
     mutations: {},
     actions: {},

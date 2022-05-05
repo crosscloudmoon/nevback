@@ -3,8 +3,8 @@ import serveObgFun from '../utils/serveUtil';
 let service = Axios.create({
     // 设置超时时间
     timeout: 60000,
-    // baseURL: 'http://localhost:8089/',
-    baseURL: 'http://36.112.11.166:8077/insert/',
+    baseURL: 'http://localhost:8089/',
+    // baseURL: 'http://36.112.11.166:8077/insert/',
 });
 let qs = require('qs');
 serveObgFun(service);

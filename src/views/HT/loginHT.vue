@@ -34,6 +34,7 @@
     </div>
 </template>
 <script>
+import { toLogin } from '@/service/HT';
 export default {
     name: 'login',
     components: {},
@@ -78,11 +79,43 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
-                    alert('submit!');
+                    let _self = this;
+                    let pas = _self.ruleForm.pass.trim().toString();
+                    let param = {
+                        name: _self.ruleForm.account,
+                        password: pas,
+                        type: '0',
+                    };
+                    // debugger;
+                    this.loginT(param);
                 } else {
                     return false;
                 }
             });
+        },
+        // 登录
+        async loginT(param) {
+            let resData = await toLogin(param);
+            if (resData.status === 200) {
+                if (
+                    resData.data.status === '104' ||
+                    resData.data.status === '102' ||
+                    resData.data.status === '105' ||
+                    resData.data.status === '106'
+                ) {
+                    this.$message(resData.data.message);
+                } else if (resData.data.status === '200') {
+                    this.$router.push({ path: '/managerSys' });
+                    this.$store.state.idCardHT = true;
+                    // this.$store.state.userCard = resData.data.user.role;
+                }
+            } else {
+                this.$message({
+                    message: '登陆失败，请联系管理员。',
+                    type: 'warning',
+                    offset: 200,
+                });
+            }
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
