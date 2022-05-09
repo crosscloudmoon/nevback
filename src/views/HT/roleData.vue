@@ -220,7 +220,7 @@ import CommonJs from 'U/common';
 import dialogs from 'C/common/dialogs';
 import noneDataStyle from 'C/common/noneData';
 // import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
-// import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
+import { getAllUser } from 'S/HT';
 import { delEmpty } from 'U/dealwithParam';
 export default {
     name: 'roleData',
@@ -302,6 +302,7 @@ export default {
         };
     },
     mounted() {
+        this.initUserForm();
         this.oHeightTable = $('.user_box').height() - $('.query_box').height() - 42 - 20;
         $('.table_box').height($('.user_box').height() - $('.query_box').height());
     },
@@ -309,6 +310,12 @@ export default {
         this.getUserDataMeth();
     },
     methods: {
+        async initUserForm() {
+            await getAllUser({}).then(res => {
+                console.log('resuser', res);
+                this.tableData.rows = res.data.data;
+            });
+        },
         addTitle(e) {
             const target = e.target;
             if (target.title) return;

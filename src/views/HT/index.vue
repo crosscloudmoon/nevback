@@ -45,7 +45,7 @@
                     </el-menu-item> -->
                     <el-menu-item index="4">
                         <i class="el-icon-setting"></i>
-                        <span slot="title">导航</span>
+                        <span slot="title">图表数据</span>
                     </el-menu-item>
                 </el-menu>
             </div>

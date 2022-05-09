@@ -391,7 +391,7 @@
                                     <h3>科普我们的星球</h3>
                                     <p>每天生存的星球，可你对它认识多少？</p>
                                     <i class="flaticon-vision offer-icon"></i>
-                                    <a href="#" class="learn-btn">
+                                    <a @click="goDataVisual(0, 'earth')" class="learn-btn">
                                         Learn more
                                         <i class="flaticon-right-arrow-1"></i>
                                     </a>
@@ -402,7 +402,7 @@
                                     <h3>数字地球数据的可视化</h3>
                                     <p>我将以可视化图表形式为大家简单清晰展示数据</p>
                                     <i class="flaticon-cube offer-icon"></i>
-                                    <a href="#" class="learn-btn">
+                                    <a @click="goDataVisual(0)" class="learn-btn">
                                         Learn more
                                         <i class="flaticon-right-arrow-1"></i>
                                     </a>
@@ -415,16 +415,14 @@
                 <div class="process-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center">
-                            <span class="sp-before">To Link Us</l></span>
+                            <span class="sp-before"><i>To Link Us</i></span>
                             <h2>探索我们的模块</h2>
-                            <p>
-                               以下为本站核心及网站内容。去往不同的模块，进行不同的探索。
-                            </p>
+                            <p>以下为本站核心及网站内容。去往不同的模块，进行不同的探索。</p>
                         </div>
                         <div class="row pt-45">
                             <div class="col-lg-4 col-sm-6 col-md-4">
                                 <div class="process-card">
-                                    <i @click="goEarth" class="flaticon-ideas"></i>
+                                    <i @click="goDataVisual(0, 'earth')" class="flaticon-ideas"></i>
                                     <h3>了解我们的星球</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
@@ -434,7 +432,7 @@
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-4">
                                 <div class="process-card">
-                                    <i @click="goDataVisual(0)" class="flaticon-sketch"></i>
+                                    <i @click="goDataVisual(0, 'map')" class="flaticon-sketch"></i>
                                     <h3>数据可视化</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
@@ -446,7 +444,10 @@
                                 class="col-lg-4 col-sm-6 col-md-4 offset-lg-0 offset-md-0 offset-sm-3"
                             >
                                 <div class="process-card">
-                                    <i @click="goSatellite" class="flaticon-deep-learning"></i>
+                                    <i
+                                        @click="goDataVisual(null, 'satellite')"
+                                        class="flaticon-deep-learning"
+                                    ></i>
                                     <h3>卫星观测</h3>
                                     <p>
                                         Lorem ipsum dolo sit amet, consecteturadiising elit sed do
@@ -472,7 +473,7 @@
                         <div class="row pt-45">
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a  @click="goDataVisual(0)" href="#">
+                                    <a @click="goDataVisual(0)" href="#">
                                         <img
                                             src="../aboutEarth/theme/images/earth1.jpeg"
                                             alt="Images"
@@ -480,11 +481,9 @@
                                     </a>
                                     <div class="content">
                                         <h3>
-                                            <a  @click="goDataVisual(0)" href="#">世界人口</a>
+                                            <a @click="goDataVisual(0)" href="#">世界人口</a>
                                         </h3>
-                                        <p>
-                                            各地区人口密集程度
-                                        </p>
+                                        <p>各地区人口密集程度</p>
                                         <a href="#" class="learn-btn">
                                             Learn more
                                             <i class="flaticon-right-arrow-1"></i>
@@ -494,19 +493,14 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a  @click="goDataVisual(1)" href="#">
-                                        <img
-                                            src="./theme/picture/GDP.png"
-                                            alt="Images"
-                                        />
+                                    <a @click="goDataVisual(1)" href="#">
+                                        <img src="./theme/picture/GDP.png" alt="Images" />
                                     </a>
                                     <div class="content">
                                         <h3>
-                                            <a @click="goDataVisual(1)" href="#">世界经济</a>
+                                            <a @click="goDataVisual(1)" href="#">自然灾害</a>
                                         </h3>
-                                        <p>
-                                            观察世界各国经济变化
-                                        </p>
+                                        <p>了解自然灾害造成的人口死亡</p>
                                         <a href="#" class="learn-btn">
                                             Learn more
                                             <i class="flaticon-right-arrow-1"></i>
@@ -516,17 +510,12 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="service-card">
-                                    <a  @click="goDataVisual(2)" href="#">
-                                        <img
-                                            src="./theme/picture/sex.png"
-                                            alt="Images"
-                                        />
+                                    <a @click="goDataVisual(2)" href="#">
+                                        <img src="./theme/picture/sex.png" alt="Images" />
                                     </a>
                                     <div class="content">
                                         <h3><a @click="goDataVisual(2)" href="#">男女比例</a></h3>
-                                        <p>
-                                            了解女性比例问题
-                                        </p>
+                                        <p>了解女性比例问题</p>
                                         <a href="#" class="learn-btn">
                                             Learn more
                                             <i class="flaticon-right-arrow-1"></i>
@@ -543,11 +532,10 @@
                                         />
                                     </a>
                                     <div class="content">
-                                        <h3><a href="#">Decoration & art</a></h3>
-                                        <p>
-                                            Lorem ipsum dolo sit amet, consectetur adipisicing
-                                            eiusmod tempor incididun teiusmod tempor
-                                        </p>
+                                        <h3>
+                                            <a @click="goDataVisual(3)" href="#">世界人口身高</a>
+                                        </h3>
+                                        <p>人的身高</p>
                                         <a href="#" class="learn-btn">
                                             Learn more
                                             <i class="flaticon-right-arrow-1"></i>
@@ -870,7 +858,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="team-card">
                                     <div class="images">
-                                        <a href="single-team.html" class="images-ptb">
+                                        <a @click="goDataVisual(0, 'map')" class="images-ptb">
                                             <img src="./theme/picture/team-img1.png" alt="Images" />
                                         </a>
                                         <ul class="social-link">
@@ -897,10 +885,12 @@
                                         </ul>
                                     </div>
                                     <div class="content">
-                                        <h3><a href="single-team.html">Justin Roberto</a></h3>
+                                        <h3>
+                                            <a @click="goDataVisual(0, 'map')">GDP</a>
+                                        </h3>
                                         <ul class="sub-title">
-                                            <li>CEO</li>
-                                            <li>ARCHITECT</li>
+                                            <!-- <li>CEO</li> -->
+                                            <li>各国经济变化</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -908,7 +898,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="team-card">
                                     <div class="images">
-                                        <a href="single-team.html" class="images-ptb">
+                                        <a @click="goDataVisual(1, 'map')" class="images-ptb">
                                             <img src="./theme/picture/team-img2.png" alt="Images" />
                                         </a>
                                         <ul class="social-link">
@@ -935,10 +925,10 @@
                                         </ul>
                                     </div>
                                     <div class="content">
-                                        <h3><a href="single-team.html">Robart dondoe</a></h3>
+                                        <h3><a @click="goDataVisual(1, 'map')">市区贯通量</a></h3>
                                         <ul class="sub-title">
-                                            <li>RESEARCHER</li>
-                                            <li>ARCHITECT</li>
+                                            <li>市区贯通量图表化</li>
+                                            <!-- <li>ARCHITECT</li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -946,7 +936,7 @@
                             <div class="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
                                 <div class="team-card">
                                     <div class="images">
-                                        <a href="single-team.html" class="images-ptb">
+                                        <a @click="goDataVisual(2, 'map')" class="images-ptb">
                                             <img src="./theme/picture/team-img3.png" alt="Images" />
                                         </a>
                                         <ul class="social-link">
@@ -973,10 +963,10 @@
                                         </ul>
                                     </div>
                                     <div class="content">
-                                        <h3><a href="single-team.html">Andres Alfaro</a></h3>
+                                        <h3><a @click="goDataVisual(2, 'map')">汽车销量</a></h3>
                                         <ul class="sub-title">
-                                            <li>DESIGNER</li>
-                                            <li>ARCHITECT</li>
+                                            <li>各省汽车增长变化</li>
+                                            <!-- <li>ARCHITECT</li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -1088,14 +1078,34 @@ export default {
             this.$refs.tabsBg.src = './theme/picture/portfolio-img2.jpg';
             this.tabImg = tabImg2;
         },
-        goEarth() {
-            this.$router.push({ path: '/aboutEarth', });
-        },
-        goDataVisual(type) {
-            this.$router.push({ path: '/dataVisualization', query: { type: type }, });
-        },
-        goSatellite() {
-            window.open('http://www.baidu.com');
+
+        goDataVisual(type, moudle) {
+            if (this.$store.state.userCard === 'vip') {
+                if (moudle === 'map') {
+                    this.$router.push({ path: '/mapData', query: { type: type } });
+                } else if (moudle === 'satellite') {
+                    const loading = this.$loading({
+                        lock: true,
+                        text: 'Loading',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)',
+                    });
+                    setTimeout(() => {
+                        loading.close();
+                        window.open('http://36.112.11.166:8083/satellite/#/', '_blank');
+                    }, 1000);
+                } else if (moudle === 'earth') {
+                    this.$router.push({ path: '/aboutEarth' });
+                } else {
+                    this.$router.push({ path: '/dataVisualization', query: { type: type } });
+                }
+            } else if (this.$store.state.idCard === false) {
+                this.$message.warning('请登录后浏览');
+            } else {
+                moudle === 'earth'
+                    ? this.$router.push({ path: '/aboutEarth' })
+                    : this.$message.error('用户未有权限浏览');
+            }
         },
     },
 };

@@ -34,7 +34,7 @@
     </div>
 </template>
 <script>
-import { toLogin } from '@/service/HT';
+import { toLogin, toSign } from '@/service/HT';
 export default {
     name: 'login',
     components: {},
@@ -52,7 +52,8 @@ export default {
         };
     },
     methods: {
-        toSignup() {
+        async toSignup(param) {
+            this.$refs['ruleForm'].resetFields();
             this.account.id = '创建新帐号';
             this.account.pas = '创建密码';
             this.account.login = '注册';
@@ -86,11 +87,22 @@ export default {
                         password: pas,
                         type: '0',
                     };
-                    // debugger;
-                    this.loginT(param);
+                    if (this.account.login === '登录') {
+                        this.loginT(param);
+                    } else {
+                        this.signUp(param);
+                    }
                 } else {
                     return false;
                 }
+            });
+        },
+        async signUp(param) {
+            await toSign({ name: param.name, password: param.password }).then(res => {
+                console.log(']', res);
+                res.data.code === '200'
+                    ? this.$message.success('注册成功')
+                    : this.$message.error('注册失败');
             });
         },
         // 登录
@@ -105,8 +117,13 @@ export default {
                 ) {
                     this.$message(resData.data.message);
                 } else if (resData.data.status === '200') {
-                    this.$router.push({ path: '/managerSys' });
-                    this.$store.state.idCardHT = true;
+                    if (resData.data.user.role === 'admin') {
+                        this.$router.push({ path: '/managerSys' });
+                        this.$store.state.idCardHT = true;
+                    } else {
+                        this.$message.warning('只可管理员登录');
+                    }
+
                     // this.$store.state.userCard = resData.data.user.role;
                 }
             } else {

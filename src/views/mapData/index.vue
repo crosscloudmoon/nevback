@@ -8,8 +8,8 @@
         <div class="mapContent">
             <div class="echartsArea">
                 <!-- <div id="mapEcharts"></div> -->
-                <div v-show="type === 0" id="gdpTest"></div>
-                <div v-show="type === 1" id="gdpTest2"></div>
+                <div v-show="type === 0" id="gdp"></div>
+                <div v-show="type === 1" id="gt"></div>
                 <div class="echartsZone" v-show="type === 2">
                     <div id="gdpTest3"></div>
                     <div id="gdpTest4"></div>
@@ -27,8 +27,9 @@ import * as echarts from 'echarts';
 export default {
     name: 'MapData',
     mounted() {
+        this.type = Number(this.$route.query.type);
         this.echartsLoadGdp();
-        this.echartsLoad2();
+        this.echartsLoadGt();
         this.echartsLoad3();
         this.echartsLoad4();
         // this.echartsLoad();
@@ -38,8 +39,8 @@ export default {
             type: 0,
             titleContent: [
                 { title: '各国经济变化', content: '近几年增长趋势' },
-                { title: 'test', content: 'testcontent' },
-                { title: 'test', content: 'testcontent' },
+                { title: '市区贯通量图表化', content: '某市区各县的开发贯通情况' },
+                { title: '汽车销量', content: '各省汽车增长变化' },
                 { title: 'test', content: 'testcontent' },
             ],
         };
@@ -49,10 +50,15 @@ export default {
             this.type = Number(newVal.query.type);
             console.log('type', this.type);
         },
+        type: function (newVal) {
+            console.log('type', this.$route.query.type, this.type);
+        },
+        immediate: true,
+        deep: true,
     },
     methods: {
         async echartsLoadGdp() {
-            let myChart = echarts.init(document.getElementById('gdpTest'));
+            let myChart = echarts.init(document.getElementById('gdp'));
 
             let years = ['2020', '2021', '2022'];
             let jdData = [];
@@ -408,8 +414,8 @@ export default {
             }
             myChart.setOption(option);
         },
-        echartsLoad2() {
-            let myChart = echarts.init(document.getElementById('gdpTest2'));
+        echartsLoadGt() {
+            let myChart = echarts.init(document.getElementById('gt'));
 
             let category = [
                 '市区',
@@ -1928,12 +1934,12 @@ export default {
             .content {
                 font-size: 28px;
             }
-            #gdpTest {
+            #gdp {
                 margin: 0 auto;
                 width: 800px;
                 height: 800px;
             }
-            #gdpTest2 {
+            #gt {
                 margin: 0 auto;
                 width: 800px;
                 height: 800px;

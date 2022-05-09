@@ -13,44 +13,11 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/aboutEarth" class="menu-button">
+                        <a @click="goDataVisual(0, 'earth')" class="menu-button">
                             <span class="menu-label">了解地球</span>
-                        </router-link>
+                        </a>
                     </li>
-                    <!-- <li>
-                    <a href="#" class="menu-button menu-drop">
-                        <span class="menu-label">About</span>
-                    </a>
-                    <div class="menu-dropdown menu-dropdown1">
-                        <ul class="menu-sub">
-                            <li>
-                                <a href="#" class="menu-subbutton">
-                                    <span class="menu-label">Who We Are</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="menu-subbutton">
-                                    <span class="menu-label">What We Do</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="menu-subbutton">
-                                    <span class="menu-label">Our Goals</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="menu-subbutton">
-                                    <span class="menu-label">Our Awards</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="menu-subbutton">
-                                    <span class="menu-label">Our Team</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> -->
+
                     <li>
                         <a href="#" class="menu-button menu-drop">
                             <span class="menu-label">数据可视化</span>
@@ -65,8 +32,8 @@
                                 </li>
                                 <li>
                                     <a @click="goDataVisual(1)" class="menu-subbutton">
-                                        <span class="menu-label">各国经济可视化</span>
-                                        <div class="menu-desc">观察世界各国经济变化</div>
+                                        <span class="menu-label">自然灾害可视化</span>
+                                        <div class="menu-desc">了解自然灾害造成的人口死亡</div>
                                     </a>
                                 </li>
                                 <li>
@@ -81,12 +48,6 @@
                                         <div class="menu-desc">人的身高</div>
                                     </a>
                                 </li>
-                                <li>
-                                    <a @click="goDataVisual(3)" class="menu-subbutton">
-                                        <span class="menu-label">中国。。。</span>
-                                        <div class="menu-desc">。。。</div>
-                                    </a>
-                                </li>
                                 <!-- <li>
                                     <a href="#" class="menu-subbutton">
                                         <span class="menu-label">E-commerce</span>
@@ -96,216 +57,29 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li>
-                        <a href="#" class="menu-button menu-drop">
-                            <span class="menu-label">Portfolio</span>
-                        </a>
-                        <div class="menu-dropdown menu-dropdown3">
-                            <div class="menu-row">
-                                <h1>HTML</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <router-link to="/test" class="menu-subbutton">
-                                            <span class="menu-label">Pellentesq</span>
-                                        </router-link>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Et rhoncus</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Ligula eget</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Turpis quis</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Vivamus ut</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-row">
-                                <h1>Flash</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Commodo</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Pulvinar</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Curabitur</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Aliquam</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Vulputate</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-row">
-                                <h1>Mobile</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Lorem ipsum</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Dolor amet</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Consectetur</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Adipiscing</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Duis ut nibh</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li> -->
-                    <!-- <li>
-                    <a href="#" class="menu-button menu-drop">
-                        <span class="menu-label">Clients</span>
-                    </a>
-                    <div class="menu-dropdown menu-dropdown4">
-                        <div class="menu-row">
-                            <div>
-                                <h1>America</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Lorem ipsum</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Dolor amet</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Consectetur</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Africa</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Pulvinar in</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Consectet</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Aliquam eu</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="menu-row">
-                            <div>
-                                <h1>Europe</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Pellentesq</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Et rhoncus</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Ligula eget</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Asia</h1>
-                                <ul class="menu-sub">
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Turpis quis</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Vivamus ut</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="menu-subbutton">
-                                            <span class="menu-label">Commodo</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li> -->
+
                     <li>
                         <a href="#" class="menu-button menu-drop">
-                            <span class="menu-label">地图</span>
+                            <span class="menu-label">MAP</span>
                         </a>
                         <div class="menu-dropdown menu-dropdown5">
                             <ul class="menu-sub">
                                 <li>
                                     <a @click="goDataVisual(0, 'map')" class="menu-subbutton">
-                                        <span class="menu-label">各省GDP</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
+                                        <span class="menu-label">GDP</span>
+                                        <span class="menu-desc">各国经济变化</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a @click="goDataVisual(1, 'map')" class="menu-subbutton">
-                                        <span class="menu-label">Et rhonc</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
+                                        <span class="menu-label">市区贯通量</span>
+                                        <span class="menu-desc">市区贯通量图表化</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a @click="goDataVisual(2, 'map')" class="menu-subbutton">
-                                        <span class="menu-label">Ligulaeg</span>
-                                        <span class="menu-desc">- Lorem ipsum dolor sit am</span>
+                                        <span class="menu-label">汽车销量</span>
+                                        <span class="menu-desc">各省汽车增长变化</span>
                                     </a>
                                 </li>
                                 <li>
@@ -448,13 +222,17 @@ export default {
                         loading.close();
                         window.open('http://36.112.11.166:8083/satellite/#/', '_blank');
                     }, 1000);
+                } else if (moudle === 'earth') {
+                    this.$router.push({ path: '/aboutEarth' });
                 } else {
                     this.$router.push({ path: '/dataVisualization', query: { type: type } });
                 }
             } else if (this.$store.state.idCard === false) {
                 this.$message.warning('请登录后浏览');
             } else {
-                this.$message.error('用户未有权限浏览');
+                moudle === 'earth'
+                    ? this.$router.push({ path: '/aboutEarth' })
+                    : this.$message.error('用户未有权限浏览');
             }
         },
 

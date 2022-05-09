@@ -40,6 +40,13 @@
                         loading="lazy"
                         style="width: 100%; height: 600px; border: 0px none"
                     ></iframe>
+                    <!-- 自然灾害 -->
+                    <iframe
+                        v-show="type === 1"
+                        src="https://ourworldindata.org/explorers/natural-disasters?facet=none&Disaster+Type=All+disasters&Impact=Deaths&Timespan=Decadal+average&Per+capita=false&country=~OWID_WRL&hideControls=true"
+                        loading="lazy"
+                        style="width: 100%; height: 600px; border: 0px none"
+                    ></iframe>
                     <!-- 男女比例 -->
                     <iframe
                         v-show="type === 2"
@@ -47,12 +54,7 @@
                         loading="lazy"
                         style="width: 100%; height: 600px; border: 0px none"
                     ></iframe>
-                    <!-- 自然灾害 -->
-                    <!-- <iframe
-                        src="https://ourworldindata.org/explorers/natural-disasters?facet=none&Disaster+Type=All+disasters&Impact=Deaths&Timespan=Decadal+average&Per+capita=false&country=~OWID_WRL&hideControls=true"
-                        loading="lazy"
-                        style="width: 100%; height: 600px; border: 0px none"
-                    ></iframe> -->
+
                     <!-- 人的身高 -->
                     <iframe
                         v-show="type === 3"
@@ -84,9 +86,9 @@ export default {
             echartsType: 'bar',
             titleContent: [
                 { title: '世界人口可视化', content: '各地区人口密集程度' },
-                { title: '各国经济可视化', content: '观察世界各国经济变化' },
+                { title: '自然灾害可视化', content: '自然灾害每年造成数万人死亡' },
                 { title: '男女比例可视化', content: '了解女性比例问题' },
-                { title: 'test', content: 'testtes' },
+                { title: '世界人口身高可视化', content: '人的身高' },
             ],
             dataContent: [
                 {
@@ -101,14 +103,13 @@ export default {
                     ],
                 },
                 {
-                    title: '哪些国家人口最稠密？',
+                    title: '自然灾害每年造成数万人死亡',
                     content: [
-                        '我们对世界的理解往往是由地理地图塑造的。但这并没有告诉我们人们住在世界上的什么地方。要理解这一点，我们需要看看人口密度。',
-                        '在地图中，我们可以看到全世界每平方公里 (km 2 ) 的人数。',
-                        '全球平均人口密度为每平方公里 61 人2，但各国之间存在很大差异。',
-                        '世界上许多小岛屿或孤立国家的人口规模都很大。澳门、摩纳哥、新加坡、香港和直布罗陀是人口最稠密的五个。新加坡每平方公里有近8,000 人，是美国的200多倍，是澳大利亚的 2000 倍。',
-                        '在较大的国家1中，孟加拉国是人口最稠密的国家，每平方公里有 1,252                        人；这几乎是其邻国印度的三倍。紧随其后的是黎巴嫩（595）、韩国（528）、荷兰（508）和卢旺达（495/km2）进入前五名。',
-                        '在这里，我们展示了这个世界的样子。当我们看到标准地图时，我们倾向于关注按地区划分的最大国家。但这些并不总是最多人居住的地方。如果我们想了解世界各地人们的生活正在如何变化，我们就需要这种背景。 1,252                        人；这几乎是其邻国印度的三倍。紧随其后的是黎巴嫩（595）、韩国（528）、荷兰（508）和卢旺达（495/km2）进入前五名。',
+                        '每年因自然灾害造成的死亡人数变化很大；几年过去了，在一场大型灾难事件夺去许多人的生命之前，死亡人数很少。',
+                        '如果我们看看过去十年的平均值，全球每年约有 45,000 人死于自然灾害。这约占全球死亡人数的 0.1%。',
+                        '在此处显示的可视化中，我们看到了近几十年来自然灾害造成的死亡人数和比例的年度变化。',
+                        '地震和海啸等低频、高影响事件是无法预防的，但如此高的人类生命损失却是可以预防的。我们从历史数据中得知，通过更早的预测、更具弹性的基础设施、应急准备和响应系统，世界已经显着减少了灾害死亡人数。',
+                        '低收入人群通常最容易受到灾害事件的影响：改善这些地区的生活水平、基础设施和响应系统将是未来几十年预防自然灾害死亡的关键。',
                     ],
                 },
                 {

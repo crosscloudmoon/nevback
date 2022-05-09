@@ -163,7 +163,6 @@ router.beforeEach(async (to, from, next) => {
         } else {
             // 校验token
             next();
-            this.$store.state.loginStatus = '登出';
         }
     }
 });
