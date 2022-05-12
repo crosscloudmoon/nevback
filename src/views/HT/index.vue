@@ -43,10 +43,26 @@
                         <i class="el-icon-document"></i>
                         <span slot="title">导航三</span>
                     </el-menu-item> -->
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">图表数据</span>
-                    </el-menu-item>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">图表数据</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item
+                                index="1"
+                                :route="{ path: '/echartsDataManager', query: { type: '1' } }"
+                            >
+                                数据表1
+                            </el-menu-item>
+                            <el-menu-item
+                                index="2"
+                                :route="{ path: '/echartsDataManager', query: { type: '2' } }"
+                            >
+                                数据表2
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
                 </el-menu>
             </div>
         </div>
@@ -97,7 +113,7 @@ export default {
         if (this.$store.state.idCardHT === true) {
             return;
         } else {
-            this.$router.push({ path: '/loginHT' });
+            // this.$router.push({ path: '/loginHT' });
         }
     },
     watch: {

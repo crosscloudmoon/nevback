@@ -49,7 +49,9 @@ export default {
         };
     },
     mounted() {
-        this.$store.state.idCard = !this.$store.state.idCard;
+        if (this.$store.state.idCard === true) {
+            this.$store.state.idCard = false;
+        }
     },
     watch: {
         '$store.state.idCard': function (newVal) {

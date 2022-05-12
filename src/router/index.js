@@ -122,6 +122,15 @@ const routes = [
                 // component: { HT: () => import('../views/HT/roleManager') },
                 component: () => import('../views/HT/roleManager'),
             },
+            {
+                path: '/echartsDataManager',
+                name: 'EchartsDataManager',
+
+                meta: {
+                    title: '图表数据管理',
+                },
+                component: () => import('../views/HT/echartsDataManager'),
+            },
 
             {
                 path: '/test',

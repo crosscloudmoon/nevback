@@ -2,8 +2,8 @@
     <div class="indexHT">
         <div class="echartsArea">
             <div id="echartsOne"></div>
-            <div id="echartsTwo"></div>
-            <div id="echartsThree"></div>
+            <!-- <div id="echartsTwo"></div> -->
+            <!-- <div id="echartsThree"></div> -->
         </div>
     </div>
 </template>
@@ -14,8 +14,8 @@ export default {
     name: 'IndexHT',
     mounted() {
         this.echartsLoad1();
-        this.echartsLoad2();
-        this.echartsLoad3();
+        // this.echartsLoad2();
+        // this.echartsLoad3();
         // this.echartsLoad4();
     },
     data() {
@@ -25,36 +25,36 @@ export default {
     methods: {
         echartsLoad1() {
             let myChart = echarts.init(document.getElementById('echartsOne'));
-            let dataAll = [389, 259, 262, 324, 232, 176, 196, 214, 133, 370];
+            let dataAll = [435, 310, 334, 395, 335, 310, 134, 105];
             let yAxisData = [
-                '原因1',
-                '原因2',
-                '原因3',
-                '原因4',
-                '原因5',
-                '原因6',
-                '原因7',
-                '原因8',
-                '原因9',
-                '原因10',
+                'Vue',
+                'CSS',
+                'Javascript',
+                'Echarts',
+                'SpringBoot',
+                'Mybatis',
+                'MySql',
+                // '原因8',
+                // '原因9',
+                '其他',
             ];
             let option = {
                 backgroundColor: '#0f375f',
                 title: [
                     {
-                        text: '各渠道投诉占比',
+                        text: '前端技术代码占比',
                         x: '2%',
                         y: '1%',
                         textStyle: { color: '#fff', fontSize: '14' },
                     },
                     {
-                        text: '投诉原因TOP10',
+                        text: '代码比率',
                         x: '40%',
                         y: '1%',
                         textStyle: { color: '#fff', fontSize: '14' },
                     },
                     {
-                        text: '各级别投诉占比',
+                        text: '后端技术代码占比',
                         x: '2%',
                         y: '50%',
                         textStyle: { color: '#fff', fontSize: '14' },
@@ -86,16 +86,16 @@ export default {
                 ],
                 series: [
                     {
-                        name: '各渠道投诉占比',
+                        name: '前端代码',
                         type: 'pie',
                         radius: '30%',
                         center: ['22%', '25%'],
                         color: ['#86c9f4', '#4da8ec', '#3a91d2', '#005fa6', '#315f97'],
                         data: [
-                            { value: 335, name: '客服电话' },
-                            { value: 310, name: '奥迪官网' },
-                            { value: 234, name: '媒体曝光' },
-                            { value: 135, name: '质检总局' },
+                            { value: 435, name: 'Vue' },
+                            { value: 310, name: 'CSS' },
+                            { value: 334, name: 'Javascript' },
+                            { value: 395, name: 'Echarts' },
                             { value: 105, name: '其他' },
                         ],
                         labelLine: { normal: { show: false } },
@@ -110,17 +110,17 @@ export default {
                         },
                     },
                     {
-                        name: '各级别投诉占比',
+                        name: '后端代码',
                         type: 'pie',
                         radius: '30%',
                         center: ['22%', '75%'],
                         color: ['#86c9f4', '#4da8ec', '#3a91d2', '#005fa6', '#315f97'],
                         labelLine: { normal: { show: false } },
                         data: [
-                            { value: 335, name: 'A级' },
-                            { value: 310, name: 'B级' },
-                            { value: 234, name: 'C级' },
-                            { value: 135, name: 'D级' },
+                            { value: 335, name: 'SpringBoot' },
+                            { value: 310, name: 'Mybatis' },
+                            { value: 134, name: 'MySql' },
+                            // { value: 135, name: 'D级' },
                         ],
                         itemStyle: {
                             normal: {
@@ -333,10 +333,10 @@ export default {
                     name: '客车',
                     value: 30,
                 },
-                {
-                    name: '轮渡',
-                    value: 40,
-                },
+                // {
+                //     name: '轮渡',
+                //     value: 40,
+                // },
             ];
 
             let data = [];
@@ -395,6 +395,7 @@ export default {
                                 show: true,
                                 position: 'outside',
                                 color: '#ddd',
+                                distance: 5,
                                 formatter: function (params) {
                                     let percent = 0;
                                     let total = 0;
@@ -403,15 +404,7 @@ export default {
                                     }
                                     percent = ((params.value / total) * 100).toFixed(0);
                                     if (params.name !== '') {
-                                        return (
-                                            '交通方式：' +
-                                            params.name +
-                                            '\n' +
-                                            '\n' +
-                                            '占百分比：' +
-                                            percent +
-                                            '%'
-                                        );
+                                        return params.name + percent + '%';
                                     } else {
                                         return '';
                                     }
@@ -419,7 +412,7 @@ export default {
                             },
                             labelLine: {
                                 length: 30,
-                                length2: 100,
+                                length2: 50,
                                 show: true,
                                 color: '#00ffff',
                             },
@@ -467,7 +460,7 @@ export default {
                     // x: 'left',
                     data: ['火车', '飞机', '客车', '轮渡'],
                     right: 340,
-                    bottom: 150,
+                    bottom: 100,
                     align: 'right',
                     textStyle: {
                         color: '#fff',
@@ -489,12 +482,14 @@ export default {
 <style lang="scss" scoped>
 .indexHT {
     .echartsArea {
-        div {
-            display: inline-block;
-        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
         #echartsOne {
             width: 1000px;
-            height: 800px;
+            height: 750px;
         }
         #echartsTwo {
             width: 600px;

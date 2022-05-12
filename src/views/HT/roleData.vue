@@ -220,7 +220,7 @@ import CommonJs from 'U/common';
 import dialogs from 'C/common/dialogs';
 import noneDataStyle from 'C/common/noneData';
 // import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
-import { getAllUser } from 'S/HT';
+// import { getAllUser } from 'S/HT';
 import { delEmpty } from 'U/dealwithParam';
 export default {
     name: 'roleData',
