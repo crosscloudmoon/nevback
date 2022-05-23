@@ -22,11 +22,12 @@
 </template>
 
 <script>
-import { getEchartsData } from '@/service/MH';
+import { getEchartsData, getEchartsYear } from '@/service/MH';
 import * as echarts from 'echarts';
 export default {
     name: 'MapData',
     mounted() {
+        this.getEchartsYear(1);
         this.type = Number(this.$route.query.type);
         this.echartsLoadGdp();
         this.echartsLoadGt();
@@ -36,6 +37,7 @@ export default {
     },
     data() {
         return {
+            yearList: [],
             type: 0,
             titleContent: [
                 { title: '各国经济变化', content: '近几年增长趋势' },
@@ -57,13 +59,24 @@ export default {
         deep: true,
     },
     methods: {
+        async getEchartsYear(type) {
+            await getEchartsYear(type).then(res => {
+                this.yearList = [...res.data.data];
+                console.log('yearList', this.yearList);
+            });
+        },
         async echartsLoadGdp() {
+            let that = this;
+            let years = that.yearList;
+            console.log('yars', years);
+            let lastYear = years.at(-1);
             let myChart = echarts.init(document.getElementById('gdp'));
 
-            let years = ['2020', '2021', '2022'];
+            console.log('last', lastYear);
+
             let jdData = [];
             let data = [];
-            for (let i = 2020; i <= 2022; i++) {
+            for (let i = 2020; i <= lastYear; i++) {
                 await getEchartsData(1, i).then(res => {
                     let namedata = [];
                     let valuedata = [];

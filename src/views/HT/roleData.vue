@@ -12,16 +12,7 @@
                         :maxlength="100"
                     />
                 </div>
-                <div class="ele_query_box">
-                    <span class="label">邮箱</span>
-                    ：
-                    <el-input
-                        v-model="userEmails"
-                        @input="getUserDataMeth"
-                        :clearable="true"
-                        placeholder="请输入邮箱地址"
-                    />
-                </div>
+
                 <el-button
                     title="查询数据"
                     @click="getUserDataMeth"
@@ -104,7 +95,7 @@
                         <noneDataStyle></noneDataStyle>
                     </template>
                 </el-table>
-                <div class="list_btn_box" v-if="tableData.total > 0" style="display: none">
+                <!-- <div class="list_btn_box" style="display: none">
                     <el-button
                         title="删除"
                         class="danger"
@@ -114,8 +105,8 @@
                         <img src="../../assets/btnIcon/delete.png" />
                         删除
                     </el-button>
-                </div>
-                <div class="list_pagination" v-if="tableData.rows && tableData.total > 0">
+                </div> -->
+                <div class="list_pagination" v-if="tableData.rows">
                     <el-pagination
                         background
                         @size-change="handleSizeChange"
@@ -190,22 +181,7 @@
             style="height: 760px"
         >
             <div style="text-align: center">
-                <el-transfer
-                    style="text-align: left; display: inline-block"
-                    v-model="currentSelectedRoleValue"
-                    filterable
-                    :left-default-checked="currentSelectedRoleValueDeaultLeft"
-                    :right-default-checked="currentSelectedRoleValueDeaultRight"
-                    :render-content="renderFunc"
-                    :titles="['未选', '已选']"
-                    :format="{
-                        noChecked: '${total}',
-                        hasChecked: '${checked}/${total}',
-                    }"
-                    @change="handleChange"
-                    :data="currentUserRoleDataGroup"
-                    @mouseover.native="addTitle"
-                ></el-transfer>
+                <el-switch v-model="value1" active-text="权限升级" inactive-text="会员"></el-switch>
             </div>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogRolePanelVisible = false">取 消</el-button>
@@ -219,14 +195,14 @@
 import CommonJs from 'U/common';
 import dialogs from 'C/common/dialogs';
 import noneDataStyle from 'C/common/noneData';
-// import { getUserData, getRoleListByUserId, assignRolesById } from 'S/userInterface';
-// import { getAllUser } from 'S/HT';
+import { getAllUser, getRoleUp } from 'S/HT';
 import { delEmpty } from 'U/dealwithParam';
 export default {
     name: 'roleData',
     components: { dialogs, noneDataStyle },
     data() {
         return {
+            value1: false,
             dialogText: {
                 text: '',
                 type: '1',
@@ -253,9 +229,8 @@ export default {
             userEmails: '',
             tableHeader: [
                 { label: '用户名', value: 'name', width: '100', minWidth: '100' },
-                { label: '邮箱', value: 'email', width: '100', minWidth: '100' },
-                { label: '电话号码', value: 'telephone', width: '100', minWidth: '100' },
-                { label: '已分配权限', value: 'roles', width: '100', minWidth: '100' },
+                { label: '登录类型', value: 'type', width: '100', minWidth: '100' },
+                { label: '已分配权限', value: 'role', width: '100', minWidth: '100' },
             ],
             currentPage: 1,
             pageSize: 10,
@@ -298,7 +273,6 @@ export default {
             renderFunc(h, option) {
                 return <span>{option.label}</span>;
             },
-            currentUserRoleDataGroup: [],
         };
     },
     mounted() {
@@ -316,26 +290,12 @@ export default {
                 this.tableData.rows = res.data.data;
             });
         },
-        addTitle(e) {
-            const target = e.target;
-            if (target.title) return;
-            target.title = target.innerText;
-        },
         async getUserDataMeth() {
-            let datas = await getUserData(
-                delEmpty({
-                    currentPage: this.currentPage,
-                    pageSize: this.pageSize,
-                    name: this.userName,
-                    email: this.userEmails,
-                })
-            );
+            let datas = await getAllUser({ name: this.userName, type: '0' });
+            console.log('data', datas);
+
             if (datas.status === 200) {
-                if (datas.data.rows) {
-                    this.tableData = datas.data;
-                } else {
-                    // this.$Message.error(datas.message);
-                }
+                this.tableData.rows = datas.data.data;
             }
         },
         // 多选框改变
@@ -374,8 +334,8 @@ export default {
             this.getUserDataMeth();
         },
         getUserDataDeatils(value) {
-            if (!value.user_id) return;
-            this.currentUserId = value.user_id;
+            if (!value.id) return;
+            this.currentUserId = value.id;
             this.dialogFormVisible = true;
             this.resetForm('ruleForm');
             this.titelName = '修改用户';
@@ -446,51 +406,19 @@ export default {
         assignRoles(value) {
             if (!value) return;
             this.dialogRolePanelVisible = true;
-            this.currentUserId = value.user_id;
-            this.currentSelectedRoleValueDeaultLeft = [];
-            this.currentSelectedRoleValueDeaultRight = [];
-            this.getRoleListByUserIdMeth(value);
+            this.currentUserId = value.id;
+            this.value1 = false;
         },
-        handleChange(value, direction, movedKeys) {
-            console.log(value, direction, movedKeys);
-        },
-        async getRoleListByUserIdMeth(value) {
-            if (!value.user_id) return;
-            let _this = this;
-            let datas = await getRoleListByUserId(value.user_id);
-            this.currentSelectedRoleValue = [];
-            this.currentUserRoleDataGroup = [];
-            if (datas.status === 200) {
-                for (let index = 0; index < datas.data.length; index++) {
-                    const element = datas.data[index];
-                    _this.currentUserRoleDataGroup.push({
-                        key: element.id,
-                        label:
-                            element.role_name +
-                            '/' +
-                            (element.perm_name = element.perm_name
-                                ? element.perm_name
-                                : '暂未分配角色'),
-                    });
-                    if (String(element.checked) === 'true') {
-                        _this.currentSelectedRoleValue.push(element.id);
-                    }
-                }
-                console.log(_this.currentUserRoleDataGroup);
-                console.log(_this.currentSelectedRoleValue);
-            }
-        },
+
         async assignRolesByIdMeth() {
-            let datas = await assignRolesById({
-                roles: this.currentSelectedRoleValue,
-                userid: this.currentUserId,
-            });
-            console.log(datas);
+            if (!this.value1) return;
+            let datas = await getRoleUp(this.currentUserId);
             if (datas.status === 200) {
                 if (datas.data.code === '200') {
                     this.dialogRolePanelVisible = false;
                     this.currentUserId = '';
-                    this.getUserDataMeth();
+                    this.initUserForm();
+                    this.$message.success('权限分配成功');
                 } else {
                     this.$message({
                         type: 'error',
@@ -508,7 +436,7 @@ export default {
 </script>
 <style lang="scss">
 .user_box {
-    width: 100%;
+    width: 1900px;
     height: 100%;
     // width: calc(100% - 30px);
     .el-dialog--center {
@@ -750,7 +678,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             position: absolute;
-            bottom: 20px;
+            bottom: -120px;
         }
         .list_btn_box {
             text-align: right;

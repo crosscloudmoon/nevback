@@ -163,6 +163,8 @@ VueRouter.prototype.push = function push(location) {
  */
 router.beforeEach(async (to, from, next) => {
     let token = window.localStorage.getItem('Authorization');
+    // let card = this.$router.query;
+    // console.log('logincadr', this.$route);
     if (to.path === '/login') {
         next();
     } else {

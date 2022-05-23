@@ -113,7 +113,7 @@ export default {
         if (this.$store.state.idCardHT === true) {
             return;
         } else {
-            // this.$router.push({ path: '/loginHT' });
+            this.$router.push({ path: '/loginHT' });
         }
     },
     watch: {

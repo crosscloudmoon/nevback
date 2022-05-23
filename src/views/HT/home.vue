@@ -488,8 +488,8 @@ export default {
         justify-content: space-around;
 
         #echartsOne {
-            width: 1000px;
-            height: 750px;
+            width: 1500px;
+            height: 950px;
         }
         #echartsTwo {
             width: 600px;

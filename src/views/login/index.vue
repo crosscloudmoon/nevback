@@ -163,7 +163,7 @@ export default {
             );
             // this.$store.commit('login/setUserInf', data.user);
             // 跳转到指定的路由
-            this.$router.push({ path: '/' });
+            this.$router.push({ path: '/', query: 'iscard' });
         },
         // 保存密码
         savePassword() {
